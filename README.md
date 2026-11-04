@@ -1,49 +1,39 @@
-# [ShadowClaw Template](https://xt-ml.github.io/shadow-claw-template/)
+# [ShadowClaw Light Meter Workbench](https://xt-ml.github.io/shadow-claw-light-meter/)
 
-[![Ask DeepWiki](https://img.shields.io/badge/DeepWiki-xt--ml%2fshadow--claw--template-blue.svg)](https://deepwiki.com/xt-ml/shadow-claw-template)
-
-This is a starter template for publishing your own static site using
-[ShadowClaw](https://github.com/xt-ml/shadow-claw) as the build engine.
+Build and document a relative-light workbench using a TinyDuino, BLE112, and KY-018 photoresistor, with agentic interpretation powered by [ShadowClaw](https://github.com/xt-ml/shadow-claw). The KY-018 reports an ADC reading and is not, by itself, a calibrated lux sensor.
 
 ## How it works
 
-1. You write your content as markdown (`.md`) or HTML (`.html`) files under
-   `pages/main/`.
-2. You can add Agent Skills under `.agents/skills/`. Each skill is a directory containing a standard `SKILL.md`; these skills are available to the main ShadowClaw conversation.
-3. You can add Declarative Tools under `.agents/tools/` as JSON files to declare custom executable tools for your site.
-4. When you push to `main`, the included GitHub Actions workflow:
+1. The workbench guide under `pages/main/~/content/02-workbench.md` documents wiring, BLE handoff assumptions, and calibration.
+2. The `/interpret-light-reading` skill uses a declarative tool to interpret readings against dark and bright references.
+3. Pages and skills are built with ShadowClaw; the included GitHub Actions workflow:
    - Checks out ShadowClaw's source as a **build dependency** (not redistributed).
    - Copies your `pages/` and `.agents/` into the build root.
    - Runs `npm run build:prod` with your repo's GitHub Pages URL injected
      automatically.
    - Deploys `dist/public/` to GitHub Pages via `actions/deploy-pages`.
 
-No ShadowClaw source lives in this repo — only your content and the workflow.
+No ShadowClaw source lives in this repo.
 
 ## Local Development
 
-To run or build your template site locally, use the `shadow-claw` CLI:
+To run or build the site locally, use the `shadow-claw` CLI:
 
 ```bash
-# Preview and run live dev server on http://127.0.0.1:8888
+# Preview on http://127.0.0.1:8888
 npx shadow-claw dev
 
 # Or build the static distribution locally into ./dist/public
 npx shadow-claw build
 ```
 
-## Quick start
+## Workbench quick start
 
-1. Click **Use this template** on GitHub (or fork/clone).
-2. In your new repo, go to **Settings → Pages → Source** and select
-   **GitHub Actions**.
-3. Optionally drop your markdown files into `pages/main/`. A repository with
-   no `pages/` directory still builds with ShadowClaw's default Pages content.
-4. Optionally add skills under `.agents/skills/`; a repository without that directory simply has no bundled skills.
-5. Optionally add tools under `.agents/tools/`; a repository without that directory has no bundled custom tools.
-6. Optionally configure `shadow-claw.config.json` (repo root) for site branding, sidebar navigation visibility, initial tool enablement (`enabledTools`), and page sort order.
-7. Optionally edit `pages/resources/routes.json` to add pretty-path URLs.
-8. Push to `main` — the workflow builds and deploys automatically.
+1. Connect the KY-018 signal output to a TinyDuino analog input; use 3.3 V and common ground, and verify your module's pin labels.
+2. Configure TinyDuino firmware to sample the ADC and a BLE112 GATT service to transport readings. BLE112 does not define a universal UART service.
+3. Record dark and bright reference ADC values and follow the [workbench guide](https://xt-ml.github.io/shadow-claw-light-meter/main/workbench/).
+4. Invoke `/interpret-light-reading` with a sample and those references. The reported level is relative to that calibration, not lux.
+5. To publish changes, enable GitHub Pages with **GitHub Actions** and push to `main`.
 
 ## Directory layout
 

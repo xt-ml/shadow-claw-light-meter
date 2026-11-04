@@ -7,7 +7,7 @@ slug: "workbench"
 
 ## Light Meter Workbench
 
-Use this workbench to build a relative-light sensor with a TinyDuino, a BLE112 radio, and a KY-018 photoresistor module. ShadowClaw's [`/interpret-light-reading`](../../.agents/skills/interpret-light-reading/SKILL.md) skill can classify a reading between your own dark and bright references.
+Use this workbench to build a relative-light sensor with a TinyDuino, a BLE112 radio, and a KY-018 photoresistor module. ShadowClaw's `/interpret-light-reading` skill can classify a reading between your own dark and bright references.
 
 ### Hardware
 

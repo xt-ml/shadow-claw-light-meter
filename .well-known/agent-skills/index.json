@@ -1,8 +1,22 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
-  "name": "ShadowClaw Template",
-  "description": "Published with ShadowClaw",
+  "name": "ShadowClaw Light Meter Workbench",
+  "description": "A TinyDuino, BLE112, and KY-018 relative-light workbench powered by ShadowClaw.",
   "skills": [
+    {
+      "name": "interpret-light-reading",
+      "type": "skill-md",
+      "description": "Interpret a TinyDuino and KY-018 light-meter ADC reading using user-supplied dark and bright references; explain relative light level without claiming lux.",
+      "url": "../../.agents/skills/interpret-light-reading/SKILL.md",
+      "digest": "sha256:501d5c11cbb0f5c39185d40d89607d30032b20a50a301f9482601a97c87622b1",
+      "tools": [
+        {
+          "name": "interpret_light_reading",
+          "url": "../../.agents/tools/interpret_light_reading.json",
+          "digest": "sha256:147502696bf74ee35f30b73630385cde208c2e9b49989a7d5052affb8f995a07"
+        }
+      ]
+    },
     {
       "name": "skill-creator",
       "type": "skill-md",
@@ -37,6 +51,12 @@
       "description": "Generate a random integer within a specified range (min through max, inclusive).",
       "url": "../../.agents/tools/generate_random_number.json",
       "digest": "sha256:daf69f22c7c852b10122ef06812f760d97a31dde098450e41a4b4a65549c030c"
+    },
+    {
+      "name": "interpret_light_reading",
+      "description": "Interpret a KY-018 ADC reading as a calibrated relative light level. This does not measure lux.",
+      "url": "../../.agents/tools/interpret_light_reading.json",
+      "digest": "sha256:147502696bf74ee35f30b73630385cde208c2e9b49989a7d5052affb8f995a07"
     }
   ],
   "scripts": [
@@ -48,7 +68,12 @@
     }
   ],
   "dependencies": {
-    "tools": ["../../.agents/tools/generate_random_number.json"],
-    "scripts": ["../../.agents/scripts/starter-tools.js"]
+    "tools": [
+      "../../.agents/tools/generate_random_number.json",
+      "../../.agents/tools/interpret_light_reading.json"
+    ],
+    "scripts": [
+      "../../.agents/scripts/starter-tools.js"
+    ]
   }
 }

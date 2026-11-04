@@ -1,10 +1,10 @@
 {
   "background_color": "#000000",
-  "description": "ShadowClaw Template - Browser-native AI agent.",
+  "description": "A TinyDuino, BLE112, and KY-018 relative-light workbench powered by ShadowClaw.",
   "display": "standalone",
-  "id": "shadow-claw",
-  "name": "ShadowClaw",
-  "short_name": "ShadowClaw",
+  "id": "shadow-claw-light-meter",
+  "name": "ShadowClaw Light Meter",
+  "short_name": "Light Meter",
   "start_url": ".",
   "theme_color": "#000000",
   "share_target": {
