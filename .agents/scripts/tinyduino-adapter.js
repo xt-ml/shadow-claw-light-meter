@@ -64,22 +64,43 @@ export function cleanup() {
 
 async function handleToolDispatch(name, params) {
   switch (name) {
-    case "tinyduino_read_light":
-      return await tinyduino.sendCommand("read_light");
+    case "tinyduino_read_light": {
+      if (tinyduino.getState().mode === "disconnected") {
+        tinyduino.toggleSimulation(true);
+      }
+      await tinyduino.sendCommand("read_light");
+      const s = tinyduino.getState();
+      const hardwareLabel = s.mode === "simulated" ? "Simulated" : "GATT";
+      return `☀️ **LightMeter Reading (${hardwareLabel})**\n- **Illuminance**: ${s.lux} lx (${s.percent}%)\n- **ADC A0**: ${s.rawA0} / 1023 (${s.voltage}V)\n- **LDR Resistance**: ${s.ldrKohm} kΩ\n- **Category**: \`${s.category}\`\n- **Device**: ${s.deviceName}`;
+    }
 
-    case "tinyduino_get_status":
-      return tinyduino.getState();
+    case "tinyduino_get_status": {
+      const s = tinyduino.getState();
+      return `📡 **TinyDuino Status**\n- **Mode**: \`${s.mode}\`\n- **Transport**: ${s.transportType}\n- **Device**: ${s.deviceName}\n- **Packets**: ${s.packetCount}\n- **Streaming**: ${s.streaming ? `ON (${s.streamRateMs}ms)` : "OFF"}\n- **Last Telemetry**: ADC ${s.rawA0} (${s.lux} lx, \`${s.category}\`)`;
+    }
 
-    case "tinyduino_set_led":
-      return await tinyduino.sendCommand("set_led", { state: params.state });
+    case "tinyduino_set_led": {
+      if (tinyduino.getState().mode === "disconnected") {
+        tinyduino.toggleSimulation(true);
+      }
+      const stateArg = (params.state || "AUTO").toUpperCase();
+      await tinyduino.sendCommand("set_led", { state: stateArg });
+      return `💡 LED Mode set to **${stateArg}** on ${tinyduino.getState().deviceName}`;
+    }
 
-    case "tinyduino_stream_light":
-      return await tinyduino.sendCommand("stream_light", {
-        rateMs: params.rateMs,
-      });
+    case "tinyduino_stream_light": {
+      if (tinyduino.getState().mode === "disconnected") {
+        tinyduino.toggleSimulation(true);
+      }
+      const rateMs = params.rateMs || 500;
+      await tinyduino.sendCommand("stream_light", { rateMs });
+      return `🌊 Started LightMeter telemetry streaming at **${rateMs}ms** interval (${tinyduino.getState().deviceName})`;
+    }
 
-    case "tinyduino_stop_stream":
-      return await tinyduino.sendCommand("stop_stream");
+    case "tinyduino_stop_stream": {
+      await tinyduino.sendCommand("stop_stream");
+      return `⏹️ Stopped LightMeter telemetry streaming (${tinyduino.getState().deviceName})`;
+    }
 
     case "tinyduino_send_command":
       return await tinyduino.sendRawText(
@@ -102,15 +123,13 @@ async function handleToolDispatch(name, params) {
 
     case "tinyduino_get_connection_status": {
       const s = tinyduino.getState();
-      return {
-        mode: s.mode,
-        deviceName: s.deviceName,
-        transportType: s.transportType,
-        packetCount: s.packetCount,
-      };
+      return `🩺 **Hardware Connection Status**\n- **Mode**: \`${s.mode}\`\n- **Device**: ${s.deviceName}\n- **Packets**: ${s.packetCount}\n- **Transport**: ${s.transportType}`;
     }
 
     case "tinyduino_read_telemetry": {
+      if (tinyduino.getState().mode === "disconnected") {
+        tinyduino.toggleSimulation(true);
+      }
       const s = tinyduino.getState();
       return {
         rawA0: s.rawA0,
@@ -123,13 +142,11 @@ async function handleToolDispatch(name, params) {
     }
 
     case "tinyduino_ambient_level": {
+      if (tinyduino.getState().mode === "disconnected") {
+        tinyduino.toggleSimulation(true);
+      }
       const s = tinyduino.getState();
-      return {
-        percent: s.percent,
-        lux: s.lux,
-        category: s.category,
-        matterIlluminance: s.matterIlluminance,
-      };
+      return `🌱 **Ambient Illuminance Level**\n- **Lux**: ${s.lux} lx\n- **Brightness**: ${s.percent}%\n- **Classification**: \`${s.category}\`\n- **Matter Value**: ${s.matterIlluminance}`;
     }
 
     case "tinyduino_render_surface":

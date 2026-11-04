@@ -13,7 +13,7 @@
         {
           "name": "tinyduino_ambient_level",
           "url": "../../.agents/tools/tinyduino_ambient_level.json",
-          "digest": "sha256:c762508986bdfa83d0a90b894da1aa2614be609d817170d36be1c70927d0e0d4"
+          "digest": "sha256:4fbb453e8dc47865b2a93079337352da64235e39be729bc73b26b2f2c2175ea8"
         }
       ]
     },
@@ -27,7 +27,7 @@
         {
           "name": "tinyduino_ambient_level",
           "url": "../../.agents/tools/tinyduino_ambient_level.json",
-          "digest": "sha256:c762508986bdfa83d0a90b894da1aa2614be609d817170d36be1c70927d0e0d4"
+          "digest": "sha256:4fbb453e8dc47865b2a93079337352da64235e39be729bc73b26b2f2c2175ea8"
         }
       ]
     },
@@ -41,7 +41,7 @@
         {
           "name": "tinyduino_read_light",
           "url": "../../.agents/tools/tinyduino_read_light.json",
-          "digest": "sha256:be9ee70b39c3c5a0ca9f0ecfbea632fe2fe80c52f68f882c63c2f760ce1d63ec"
+          "digest": "sha256:f828183364bd25e9f9dd25045d248fa4f6c99d9a10e62c7c9eaf028ae709ecd0"
         }
       ]
     },
@@ -55,7 +55,7 @@
         {
           "name": "tinyduino_set_led",
           "url": "../../.agents/tools/tinyduino_set_led.json",
-          "digest": "sha256:2ac5aaa4c498bd00ca31ffbf8c8e5c65ce85adde749e51801cfa78c2ec2d2056"
+          "digest": "sha256:1b7d2a7b2aa7f63e15063eb43f9b0696d5b5bde66dc590153bf35e517c5ca421"
         }
       ]
     },
@@ -82,7 +82,7 @@
         {
           "name": "tinyduino_get_connection_status",
           "url": "../../.agents/tools/tinyduino_get_connection_status.json",
-          "digest": "sha256:be3134e4326e32f5fb79ea71d01c25b65756e68161547924d3c7c2d93c56a1a0"
+          "digest": "sha256:f6092313fc757e1485b32d4bbfc81419e23a190557f1744716b69ed4ce8bbe15"
         }
       ],
       "scripts": [
@@ -103,7 +103,7 @@
         {
           "name": "tinyduino_get_status",
           "url": "../../.agents/tools/tinyduino_get_status.json",
-          "digest": "sha256:f2e1705245adbd218a563e7249de287e1a2b190ac79d6124d4ff28cfb105f699"
+          "digest": "sha256:00b98de85a32be171256b7f9c9ac801f3267461c64fd4bc3f4245b84c60f736c"
         }
       ],
       "scripts": [
@@ -120,79 +120,79 @@
       "name": "tinyduino_ambient_level",
       "description": "Lightweight sensory check returning current ambient light level, lux, category, and Matter 0x0400 cluster MeasuredValue for smart home automation.",
       "url": "../../.agents/tools/tinyduino_ambient_level.json",
-      "digest": "sha256:c762508986bdfa83d0a90b894da1aa2614be609d817170d36be1c70927d0e0d4"
+      "digest": "sha256:4fbb453e8dc47865b2a93079337352da64235e39be729bc73b26b2f2c2175ea8"
     },
     {
       "name": "tinyduino_connect",
       "description": "Trigger Web Bluetooth connection dialog or activate simulated hardware.",
       "url": "../../.agents/tools/tinyduino_connect.json",
-      "digest": "sha256:c24edd838889b6f3be86ccb19b9651939845302173e230e90aff64f31417dacd"
+      "digest": "sha256:ddc1e66dad1c5cf0a16e4318f148021e80354092efdfb5a39a788a40aa8b2967"
     },
     {
       "name": "tinyduino_disconnect",
       "description": "Disconnect from TinyDuino Web Bluetooth GATT server or deactivate simulation.",
       "url": "../../.agents/tools/tinyduino_disconnect.json",
-      "digest": "sha256:22f954e857efdb03b6b768bf7f8be3332a8a386bee214b20ccc59e66138d9b5a"
+      "digest": "sha256:07afe075729823553007328c95591b2fd4ab846b3e8828dc406c96cacae9ecf2"
     },
     {
       "name": "tinyduino_get_connection_status",
       "description": "Inspect the current transport mode (connected, disconnected, simulated), device name, and packet counters.",
       "url": "../../.agents/tools/tinyduino_get_connection_status.json",
-      "digest": "sha256:be3134e4326e32f5fb79ea71d01c25b65756e68161547924d3c7c2d93c56a1a0"
+      "digest": "sha256:f6092313fc757e1485b32d4bbfc81419e23a190557f1744716b69ed4ce8bbe15"
     },
     {
       "name": "tinyduino_get_status",
       "description": "Return current TinyDuino connection state, LightMeter A0 telemetry, auxiliary sensor values, and recent samples without transmitting a new BLE packet.",
       "url": "../../.agents/tools/tinyduino_get_status.json",
-      "digest": "sha256:f2e1705245adbd218a563e7249de287e1a2b190ac79d6124d4ff28cfb105f699"
+      "digest": "sha256:00b98de85a32be171256b7f9c9ac801f3267461c64fd4bc3f4245b84c60f736c"
     },
     {
       "name": "tinyduino_read_light",
       "description": "Trigger an immediate analogRead(A0) on the TinyDuino KY-018 photoresistor over Web Bluetooth GATT Handle 17, and return the live LightMeter metrics (raw A0, voltage, brightness %, and estimated lux).",
       "url": "../../.agents/tools/tinyduino_read_light.json",
-      "digest": "sha256:be9ee70b39c3c5a0ca9f0ecfbea632fe2fe80c52f68f882c63c2f760ce1d63ec"
+      "digest": "sha256:f828183364bd25e9f9dd25045d248fa4f6c99d9a10e62c7c9eaf028ae709ecd0"
     },
     {
       "name": "tinyduino_read_telemetry",
       "description": "Return snapshot of raw ADC, voltage, brightness %, estimated lux, and lighting category.",
       "url": "../../.agents/tools/tinyduino_read_telemetry.json",
-      "digest": "sha256:de9f61d23b53bc11babe3a920db11d8576e792776140901a52e567ca600f7375"
+      "digest": "sha256:605c340c367325dea0c181fd5b8aacaabc5addd119f3409a6a0dfdaf743cb3d3"
     },
     {
       "name": "tinyduino_render_surface",
       "description": "Render or embed the interactive TinyDuino LightMeter control panel inside an agent chat or UI surface.",
       "url": "../../.agents/tools/tinyduino_render_surface.json",
-      "digest": "sha256:6fba7fd6712879f17ed0e304900367371bc620323658daf50ea35b9815584f1f"
+      "digest": "sha256:a283e968a6e6c154b62853db902b6d5f28d91f2c03f6651f93fab18acb3e3a42"
     },
     {
       "name": "tinyduino_send_command",
       "description": "Send an arbitrary ASCII command string (e.g. LIGHT, STATUS, LED_ON, RATE:500, PING) to TinyDuino over GATT Handle 17.",
       "url": "../../.agents/tools/tinyduino_send_command.json",
-      "digest": "sha256:aef5e3ce2520cb59f9967f5ef160204a6026fe49bcdeffc58daa3c3b294816ff"
+      "digest": "sha256:a3a0c16822cc8641bf59c5cfa345d6f62e325c051e5db468ca4b374bbbecac56"
     },
     {
       "name": "tinyduino_send_raw",
       "description": "Send raw hexadecimal bytes (e.g. '80 0c 00 00' or '01') to TinyDuino over GATT Handle 17.",
       "url": "../../.agents/tools/tinyduino_send_raw.json",
-      "digest": "sha256:4c6d759cf82d50b730633bfc11bf0ba149a97017066d29cda2b252d9389e35d9"
+      "digest": "sha256:4ab8ccb7eba08158e07a72d380949087322c4b421f4ac6e0d2d111fa55b15a59"
     },
     {
       "name": "tinyduino_set_led",
       "description": "Control the TinyDuino onboard LED (Pin 13) and ASD2009 Proto Board LEDs. Modes: ON (force ON), OFF (force OFF), or AUTO (automatic BLE state blink).",
       "url": "../../.agents/tools/tinyduino_set_led.json",
-      "digest": "sha256:2ac5aaa4c498bd00ca31ffbf8c8e5c65ce85adde749e51801cfa78c2ec2d2056"
+      "digest": "sha256:1b7d2a7b2aa7f63e15063eb43f9b0696d5b5bde66dc590153bf35e517c5ca421"
     },
     {
       "name": "tinyduino_stop_stream",
       "description": "Stop continuous A0 LightMeter telemetry streaming from the TinyDuino.",
       "url": "../../.agents/tools/tinyduino_stop_stream.json",
-      "digest": "sha256:e273b065dffaf34717bb1818aac7dbecc405082d4604a2a8ea69906cccf856e1"
+      "digest": "sha256:822237e0a558f42700019e260e3aab20714f9974218e710ec476ce5da6c9a9ec"
     },
     {
       "name": "tinyduino_stream_light",
       "description": "Start continuous A0 LightMeter telemetry streaming from TinyDuino and optionally set sampling interval in ms (250, 500, 1000).",
       "url": "../../.agents/tools/tinyduino_stream_light.json",
-      "digest": "sha256:8d0c7c01a2c0a80601e8c219d1dd2cba0a9b1cf83a6f8ada32511c33835cee9e"
+      "digest": "sha256:689cd91e4325711b19664296bd6af2a6225cc47dd691eeed9b86c796a9f9a6d9"
     }
   ],
   "scripts": [
@@ -200,7 +200,7 @@
       "name": "tinyduino-adapter",
       "description": "Portable ESM engine logic and tool execution handler for tinyduino-adapter.",
       "url": "../../.agents/scripts/tinyduino-adapter.js",
-      "digest": "sha256:7eee37f4ebbaefc57643b27cbb8e57710bd6b4ed9aa9d7c7d6c39a822b8b3736"
+      "digest": "sha256:c5355d93b4c12a1227270f5b37c4338b0af54c537fb13a7c1ca5dffd2ba9ea05"
     },
     {
       "name": "tinyduino-ble",

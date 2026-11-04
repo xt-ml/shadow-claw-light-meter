@@ -6,6 +6,12 @@
 
 function makeBroadcastCode(toolName) {
   return `
+let input = {};
+try {
+  const raw = typeof $PIPE_DATA !== "undefined" && $PIPE_DATA ? $PIPE_DATA : (typeof data !== "undefined" ? data : "{}");
+  input = typeof raw === "string" ? JSON.parse(raw) : (raw || {});
+} catch (_) {}
+
 const cmdCh = new BroadcastChannel("tinyduino-commands");
 const resCh = new BroadcastChannel("tinyduino-results");
 const reqId = "req_" + Math.random().toString(36).slice(2);
