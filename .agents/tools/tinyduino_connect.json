@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "tinyduino_connect",
+  "description": "Trigger Web Bluetooth connection dialog or activate simulated hardware.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "simulate": {
+        "type": "boolean",
+        "description": "Set true to activate internal simulation instead of hardware Web Bluetooth."
+      }
+    },
+    "additionalProperties": false
+  },
+  "annotations": {
+    "readOnlyHint": false,
+    "consequentialHint": false
+  },
+  "execution": {
+    "type": "javascript",
+    "code": "const cmdCh = new BroadcastChannel(\"tinyduino-commands\");\nconst resCh = new BroadcastChannel(\"tinyduino-results\");\nconst reqId = \"req_\" + Math.random().toString(36).slice(2);\n\nconst timeout = new Promise((_, reject) =>\n  setTimeout(() => {\n    cmdCh.close();\n    resCh.close();\n    reject(new Error(\"Timeout awaiting TinyDuino response for tinyduino_connect. Ensure workbench is open at /pages/main/tinyduino.html.\"));\n  }, 5000)\n);\n\nconst reply = new Promise((resolve, reject) => {\n  const handler = (e) => {\n    if (e.data && e.data.requestId === reqId) {\n      if (e.data.ack) return;\n      resCh.removeEventListener(\"message\", handler);\n      cmdCh.close();\n      resCh.close();\n      if (e.data.error) reject(new Error(e.data.error));\n      else resolve(e.data.result);\n    }\n  };\n  resCh.addEventListener(\"message\", handler);\n  cmdCh.postMessage({ type: \"tinyduino_connect\", requestId: reqId, params: input || {} });\n});\n\nreturn await Promise.race([reply, timeout]);"
+  }
+}

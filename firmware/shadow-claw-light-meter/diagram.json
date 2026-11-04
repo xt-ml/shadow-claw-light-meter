@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "author": "ShadowClaw LightMeter",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "wokwi-arduino-nano",
+      "id": "tinyduino",
+      "top": 0,
+      "left": 0,
+      "attrs": {}
+    },
+    {
+      "type": "chip-ble112",
+      "id": "ble112",
+      "top": -130,
+      "left": 10,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-photoresistor-sensor",
+      "id": "ky018",
+      "top": 3.2,
+      "left": -229.6,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_aux",
+      "top": -118.8,
+      "left": -73,
+      "attrs": { "color": "green", "label": "Aux LED (D7)" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_aux",
+      "top": -44.05,
+      "left": 0,
+      "attrs": { "value": "220" }
+    }
+  ],
+  "connections": [
+    ["tinyduino:3.3V", "ble112:VCC", "red", ["v4.8", "h-38.9", "v-188.62"]],
+    ["tinyduino:GND.1", "ble112:GND", "black", ["v-158.4", "h-129.7"]],
+    ["ble112:TX", "tinyduino:3", "green", ["v0"]],
+    ["tinyduino:4", "ble112:RX", "gold", ["v-24", "h57.1", "v-105.6", "v3.38"]],
+    ["tinyduino:3.3V", "ky018:VCC", "red", ["v-43.2", "h-48.5"]],
+    ["tinyduino:GND.2", "ky018:GND", "black", ["v14.4", "h-0.5", "v10"]],
+    ["ky018:AO", "tinyduino:A0", "purple", ["v28.1", "h106.1"]],
+    ["tinyduino:7", "led_aux:A", "green", ["v0"]],
+    ["led_aux:C", "r_aux:1", "green", ["v0"]],
+    ["r_aux:2", "tinyduino:GND.1", "black", ["h46.8", "v115.2", "h38.9"]]
+  ],
+  "dependencies": {}
+}

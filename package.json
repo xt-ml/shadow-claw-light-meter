@@ -1,0 +1,38 @@
+{
+  "name": "shadow-claw-light-meter",
+  "version": "1.0.0",
+  "description": "Hardware light meter workbench and agentic sensory skills for TinyDuino, BLE112, and KY-018 photoresistor, powered by ShadowClaw.",
+  "type": "module",
+  "homepage": "https://xt-ml.github.io/shadow-claw-light-meter/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xt-ml/shadow-claw-light-meter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xt-ml/shadow-claw-light-meter/issues"
+  },
+  "scripts": {
+    "build": "npx shadow-claw build --prod",
+    "start": "npx shadow-claw dev --open -y",
+    "dev": "npx shadow-claw dev --open -y",
+    "test": "node --test test/*.test.mjs",
+    "check": "npm run check:compat && npm run check:tools",
+    "check:compat": "node bin/check-namespace.mjs",
+    "check:namespace": "node bin/check-namespace.mjs",
+    "check:tools": "node bin/generate-tools.mjs --check",
+    "build:tools": "node bin/generate-tools.mjs",
+    "skills:index": "node bin/generate-skills-index.mjs",
+    "compile:firmware": "bash bin/upload.sh --compile-only"
+  },
+  "keywords": [
+    "shadow-claw",
+    "arduino",
+    "tinyduino",
+    "ble112",
+    "ky-018",
+    "light-meter",
+    "mcp",
+    "webmcp"
+  ],
+  "license": "AGPL-3.0"
+}

@@ -1,0 +1,10 @@
+[wokwi]
+version = 1
+firmware = "build/shadow-claw-light-meter.ino.hex"
+elf = "build/shadow-claw-light-meter.ino.elf"
+rfc2217ServerPort = 4000
+
+[[chip]]
+name = "ble112"
+sources = ["ble112.chip.c"]
+

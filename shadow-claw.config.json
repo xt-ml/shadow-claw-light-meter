@@ -1,23 +1,28 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "site": {
-    "title": "ShadowClaw Template",
-    "description": "Published with ShadowClaw",
-    "themeColor": "#121212",
-    "lang": "en"
+    "title": "TinyDuino LightMeter - Hardware Sensory Workbench",
+    "description": "Hardware light meter workbench and agentic sensory skills for TinyDuino, BLE112, and KY-018 photoresistor, powered by WebMCP and ShadowClaw.",
+    "themeColor": "#0e1415",
+    "lang": "en-US"
   },
   "branding": {
-    "titleText": "ShadowClaw Template",
-    "siteUrl": "https://xt-ml.github.io/shadow-claw-template/",
-    "repoUrl": "https://github.com/xt-ml/shadow-claw-template",
-    "repoLabel": "ShadowClaw Template on GitHub",
+    "titleText": "TinyDuino LightMeter",
+    "siteUrl": "https://xt-ml.github.io/shadow-claw-light-meter/",
+    "repoUrl": "https://github.com/xt-ml/shadow-claw-light-meter",
+    "repoLabel": "TinyDuino LightMeter on GitHub",
     "faviconPath": "assets/icons/favicon.svg",
     "appleTouchIconPath": "assets/icons/favicon.svg",
-    "notFoundPath": "404.html"
+    "notFoundPath": "404.html",
+    "logoSlotHtml": "<svg class=\"header-title-logo\" viewBox=\"0 0 32 32\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"32\" height=\"32\" rx=\"8\" fill=\"#1a2121\" stroke=\"#3f4849\" stroke-width=\"1.5\"/><circle cx=\"16\" cy=\"16\" r=\"10\" stroke=\"#80d4db\" stroke-width=\"1.2\" stroke-dasharray=\"3 2\" opacity=\"0.6\"/><circle cx=\"16\" cy=\"16\" r=\"7\" fill=\"url(#photon-grad)\"/><circle cx=\"16\" cy=\"16\" r=\"3.5\" fill=\"#cce8ea\"/><path d=\"M16 2v4M16 26v4M2 16h4M26 16h4\" stroke=\"#80d4db\" stroke-width=\"1.5\" stroke-linecap=\"round\"/><path d=\"M6.1 6.1l2.8 2.8M23.1 23.1l2.8 2.8M6.1 25.9l2.8-2.8M23.1 8.9l2.8-2.8\" stroke=\"#9df0f8\" stroke-width=\"1.2\" stroke-linecap=\"round\" opacity=\"0.75\"/><defs><linearGradient id=\"photon-grad\" x1=\"9\" y1=\"9\" x2=\"23\" y2=\"23\" gradientUnits=\"userSpaceOnUse\"><stop offset=\"0%\" stop-color=\"#9df0f8\"/><stop offset=\"100%\" stop-color=\"#00696f\"/></linearGradient></defs></svg>"
+  },
+  "theme": {
+    "stylesheet": "pages/main/theme.css"
   },
   "pwa": {
     "manifestPath": "manifest.json"
   },
+  "sitemapPath": "sitemap.xml",
   "assets": ["assets"],
   "sidebar": {
     "pagesHidden": false,
@@ -26,7 +31,76 @@
     "filesHidden": false,
     "defaultPage": "pages"
   },
+  "pages": {
+    "sortOrder": "asc",
+    "defaultPinnedPage": "/pages/main/tinyduino.html",
+    "directPages": ["/pages/main/tinyduino.html", "/pages/main/index.html"],
+    "iframe": true
+  },
+  "customElements": {
+    "allowedElements": [
+      "tinyduino-control-panel",
+      "tinyduino-lightmeter",
+      "tinyduino-sensor-card",
+      "tinyduino-packet-inspector"
+    ],
+    "allowedDomains": ["localhost", "127.0.0.1"],
+    "scripts": [
+      {
+        "id": "tinyduino-element",
+        "name": "tinyduino-control-panel",
+        "src": ".agents/scripts/tinyduino-element.js",
+        "global": true,
+        "autoload": true,
+        "hasInit": false
+      },
+      {
+        "id": "tinyduino-adapter",
+        "name": "tinyduino-adapter",
+        "src": ".agents/scripts/tinyduino-adapter.js",
+        "global": true,
+        "autoload": true,
+        "hasInit": true
+      }
+    ]
+  },
+  "security": {
+    "iframeSandbox": [
+      "allow-modals",
+      "allow-scripts",
+      "allow-popups",
+      "allow-popups-to-escape-sandbox"
+    ],
+    "workerSrc": ["'self'", "blob:", "data:"],
+    "connectSrc": [
+      "'self'",
+      "blob:",
+      "data:",
+      "https://localhost:3000",
+      "http://localhost:3000",
+      "https://127.0.0.1:3000",
+      "http://127.0.0.1:3000"
+    ]
+  },
   "settings": {
-    "defaultToolsProfile": "__builtin_default"
-  }
+    "assistantName": "Lux",
+    "defaultToolsProfile": "none",
+    "internetAccess": true,
+    "vm_bash_full_internet_access": true
+  },
+  "enabledTools": [
+    "tinyduino_read_light",
+    "tinyduino_stream_light",
+    "tinyduino_stop_stream",
+    "tinyduino_set_led",
+    "tinyduino_get_status",
+    "tinyduino_send_command",
+    "tinyduino_send_raw",
+    "tinyduino_connect",
+    "tinyduino_disconnect",
+    "tinyduino_get_connection_status",
+    "tinyduino_read_telemetry",
+    "tinyduino_render_surface",
+    "tinyduino_ambient_level"
+  ]
 }

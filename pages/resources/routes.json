@@ -3,8 +3,50 @@
     "/pages/main/index.html": {
       "prettyPath": "/main/"
     },
-    "/pages/main/~/content/01-about.md": {
-      "prettyPath": "/main/about/"
+    "/pages/main/tinyduino.html": {
+      "prettyPath": "/main/tinyduino/"
+    },
+    "/pages/main/~/content/01-hardware-architecture.md": {
+      "prettyPath": "/main/hardware-architecture/"
+    },
+    "/pages/main/~/content/02-wiring-schematic.md": {
+      "prettyPath": "/main/wiring-schematic/"
+    },
+    "/pages/main/~/content/03-ble112-bgapi.md": {
+      "prettyPath": "/main/ble112-bgapi/"
+    },
+    "/pages/main/~/content/04-ky018-calibration.md": {
+      "prettyPath": "/main/ky018-calibration/"
+    },
+    "/pages/main/~/content/05-field-diagnostics.md": {
+      "prettyPath": "/main/field-diagnostics/"
+    },
+    "/pages/main/~/content/06-divider-math.md": {
+      "prettyPath": "/main/divider-math/"
+    },
+    "/pages/main/~/content/07-wokwi-simulation.md": {
+      "prettyPath": "/main/wokwi-simulation/"
+    },
+    "/pages/main/~/content/08-firmware-guide.md": {
+      "prettyPath": "/main/firmware-guide/"
+    },
+    "/pages/main/~/content/09-webmcp-tools.md": {
+      "prettyPath": "/main/webmcp-tools/"
+    },
+    "/pages/main/~/content/10-agent-skills.md": {
+      "prettyPath": "/main/agent-skills/"
+    },
+    "/pages/main/~/content/11-workbench-ui.md": {
+      "prettyPath": "/main/workbench-ui/"
+    },
+    "/pages/main/~/content/12-namespace-isolation.md": {
+      "prettyPath": "/main/namespace-isolation/"
+    },
+    "/pages/main/~/content/13-troubleshooting.md": {
+      "prettyPath": "/main/troubleshooting/"
+    },
+    "/pages/main/~/content/14-download-center.md": {
+      "prettyPath": "/main/download-center/"
     },
     "/pages/main/MEMORY.md": {
       "prettyPath": "/main/memory/"

@@ -1,8 +1,64 @@
 {
   "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
-  "name": "ShadowClaw Template",
-  "description": "Published with ShadowClaw",
+  "name": "TinyDuino LightMeter - Hardware Sensory Workbench",
+  "description": "Hardware light meter workbench and agentic sensory skills for TinyDuino, BLE112, and KY-018 photoresistor, powered by WebMCP and ShadowClaw.",
   "skills": [
+    {
+      "name": "daylight-harvest",
+      "type": "skill-md",
+      "description": "Energy-saving daylight harvesting coordinator calculating artificial light offsets based on live TinyDuino lux.",
+      "url": "../../.agents/skills/daylight-harvest/SKILL.md",
+      "digest": "sha256:d412954b0ba53ea49b2943f3a44bc0f9aef2a78725e32cc2879debf121c6f73d",
+      "tools": [
+        {
+          "name": "tinyduino_ambient_level",
+          "url": "../../.agents/tools/tinyduino_ambient_level.json",
+          "digest": "sha256:c762508986bdfa83d0a90b894da1aa2614be609d817170d36be1c70927d0e0d4"
+        }
+      ]
+    },
+    {
+      "name": "dusk-trigger",
+      "type": "skill-md",
+      "description": "Detect true physical dusk and twilight using TinyDuino live illuminance rather than clock-based estimates.",
+      "url": "../../.agents/skills/dusk-trigger/SKILL.md",
+      "digest": "sha256:cefa698b2df3e1a600baff62d73197db320000958a89b1cfdbe7b9df53678ebc",
+      "tools": [
+        {
+          "name": "tinyduino_ambient_level",
+          "url": "../../.agents/tools/tinyduino_ambient_level.json",
+          "digest": "sha256:c762508986bdfa83d0a90b894da1aa2614be609d817170d36be1c70927d0e0d4"
+        }
+      ]
+    },
+    {
+      "name": "lightmeter",
+      "type": "skill-md",
+      "description": "Read live ambient illuminance from the TinyDuino KY-018 sensor, classify lighting conditions, and display metrics.",
+      "url": "../../.agents/skills/lightmeter/SKILL.md",
+      "digest": "sha256:3ad93ecd1cff60fa21e7a472f5bf50fce9e3d26f0a6c25e8463d2ab7460edd2c",
+      "tools": [
+        {
+          "name": "tinyduino_read_light",
+          "url": "../../.agents/tools/tinyduino_read_light.json",
+          "digest": "sha256:be9ee70b39c3c5a0ca9f0ecfbea632fe2fe80c52f68f882c63c2f760ce1d63ec"
+        }
+      ]
+    },
+    {
+      "name": "nightlight",
+      "type": "skill-md",
+      "description": "Monitor ambient darkness and control TinyDuino Pin 13 / Pin 7 LEDs as an automatic reactive nightlight.",
+      "url": "../../.agents/skills/nightlight/SKILL.md",
+      "digest": "sha256:fbb20ab87d2ade796b3af4e8aa5677459a34b83645d217576eee807c67f86858",
+      "tools": [
+        {
+          "name": "tinyduino_set_led",
+          "url": "../../.agents/tools/tinyduino_set_led.json",
+          "digest": "sha256:2ac5aaa4c498bd00ca31ffbf8c8e5c65ce85adde749e51801cfa78c2ec2d2056"
+        }
+      ]
+    },
     {
       "name": "skill-creator",
       "type": "skill-md",
@@ -17,38 +73,175 @@
       ]
     },
     {
-      "name": "toast-random-number",
+      "name": "tinyduino-doctor",
       "type": "skill-md",
-      "description": "Generate a random integer from 1 to 1000000 and show it in a ShadowClaw toast notification.",
-      "url": "../../.agents/skills/toast-random-number/SKILL.md",
-      "digest": "sha256:e5310af2083048d34619a6ffcfdc22ff7e0f818f1c8aa56991540dab3d62cc99",
+      "description": "Automated troubleshooting doctor diagnosing Web Bluetooth connection failures, BlueZ GATT errors, and CCCD timing.",
+      "url": "../../.agents/skills/tinyduino-doctor/SKILL.md",
+      "digest": "sha256:a05ecbabb0d84d7153718f649ebb925ce98828ab19f62357c12c9e2d4aa0c6be",
       "tools": [
         {
-          "name": "generate_random_number",
-          "url": "../../.agents/tools/generate_random_number.json",
-          "digest": "sha256:daf69f22c7c852b10122ef06812f760d97a31dde098450e41a4b4a65549c030c"
+          "name": "tinyduino_get_connection_status",
+          "url": "../../.agents/tools/tinyduino_get_connection_status.json",
+          "digest": "sha256:be3134e4326e32f5fb79ea71d01c25b65756e68161547924d3c7c2d93c56a1a0"
+        }
+      ],
+      "scripts": [
+        {
+          "name": "tinyduino",
+          "url": "../../.agents/scripts/tinyduino.js",
+          "digest": "sha256:cebca45691c331ebd094a264f1c24d49613ef2caa1287fb179caba9b380955db"
+        }
+      ]
+    },
+    {
+      "name": "tinyduino-status",
+      "type": "skill-md",
+      "description": "Comprehensive hardware diagnostic inspecting connection state, packet counts, last ACK, and sensor telemetry.",
+      "url": "../../.agents/skills/tinyduino-status/SKILL.md",
+      "digest": "sha256:473177ed6e02165f1dc42ed79d7f68d7a218ceb2c471fb8fef539943156ab976",
+      "tools": [
+        {
+          "name": "tinyduino_get_status",
+          "url": "../../.agents/tools/tinyduino_get_status.json",
+          "digest": "sha256:f2e1705245adbd218a563e7249de287e1a2b190ac79d6124d4ff28cfb105f699"
+        }
+      ],
+      "scripts": [
+        {
+          "name": "tinyduino",
+          "url": "../../.agents/scripts/tinyduino.js",
+          "digest": "sha256:cebca45691c331ebd094a264f1c24d49613ef2caa1287fb179caba9b380955db"
         }
       ]
     }
   ],
   "tools": [
     {
-      "name": "generate_random_number",
-      "description": "Generate a random integer within a specified range (min through max, inclusive).",
-      "url": "../../.agents/tools/generate_random_number.json",
-      "digest": "sha256:daf69f22c7c852b10122ef06812f760d97a31dde098450e41a4b4a65549c030c"
+      "name": "tinyduino_ambient_level",
+      "description": "Lightweight sensory check returning current ambient light level, lux, category, and Matter 0x0400 cluster MeasuredValue for smart home automation.",
+      "url": "../../.agents/tools/tinyduino_ambient_level.json",
+      "digest": "sha256:c762508986bdfa83d0a90b894da1aa2614be609d817170d36be1c70927d0e0d4"
+    },
+    {
+      "name": "tinyduino_connect",
+      "description": "Trigger Web Bluetooth connection dialog or activate simulated hardware.",
+      "url": "../../.agents/tools/tinyduino_connect.json",
+      "digest": "sha256:c24edd838889b6f3be86ccb19b9651939845302173e230e90aff64f31417dacd"
+    },
+    {
+      "name": "tinyduino_disconnect",
+      "description": "Disconnect from TinyDuino Web Bluetooth GATT server or deactivate simulation.",
+      "url": "../../.agents/tools/tinyduino_disconnect.json",
+      "digest": "sha256:22f954e857efdb03b6b768bf7f8be3332a8a386bee214b20ccc59e66138d9b5a"
+    },
+    {
+      "name": "tinyduino_get_connection_status",
+      "description": "Inspect the current transport mode (connected, disconnected, simulated), device name, and packet counters.",
+      "url": "../../.agents/tools/tinyduino_get_connection_status.json",
+      "digest": "sha256:be3134e4326e32f5fb79ea71d01c25b65756e68161547924d3c7c2d93c56a1a0"
+    },
+    {
+      "name": "tinyduino_get_status",
+      "description": "Return current TinyDuino connection state, LightMeter A0 telemetry, auxiliary sensor values, and recent samples without transmitting a new BLE packet.",
+      "url": "../../.agents/tools/tinyduino_get_status.json",
+      "digest": "sha256:f2e1705245adbd218a563e7249de287e1a2b190ac79d6124d4ff28cfb105f699"
+    },
+    {
+      "name": "tinyduino_read_light",
+      "description": "Trigger an immediate analogRead(A0) on the TinyDuino KY-018 photoresistor over Web Bluetooth GATT Handle 17, and return the live LightMeter metrics (raw A0, voltage, brightness %, and estimated lux).",
+      "url": "../../.agents/tools/tinyduino_read_light.json",
+      "digest": "sha256:be9ee70b39c3c5a0ca9f0ecfbea632fe2fe80c52f68f882c63c2f760ce1d63ec"
+    },
+    {
+      "name": "tinyduino_read_telemetry",
+      "description": "Return snapshot of raw ADC, voltage, brightness %, estimated lux, and lighting category.",
+      "url": "../../.agents/tools/tinyduino_read_telemetry.json",
+      "digest": "sha256:de9f61d23b53bc11babe3a920db11d8576e792776140901a52e567ca600f7375"
+    },
+    {
+      "name": "tinyduino_render_surface",
+      "description": "Render or embed the interactive TinyDuino LightMeter control panel inside an agent chat or UI surface.",
+      "url": "../../.agents/tools/tinyduino_render_surface.json",
+      "digest": "sha256:6fba7fd6712879f17ed0e304900367371bc620323658daf50ea35b9815584f1f"
+    },
+    {
+      "name": "tinyduino_send_command",
+      "description": "Send an arbitrary ASCII command string (e.g. LIGHT, STATUS, LED_ON, RATE:500, PING) to TinyDuino over GATT Handle 17.",
+      "url": "../../.agents/tools/tinyduino_send_command.json",
+      "digest": "sha256:aef5e3ce2520cb59f9967f5ef160204a6026fe49bcdeffc58daa3c3b294816ff"
+    },
+    {
+      "name": "tinyduino_send_raw",
+      "description": "Send raw hexadecimal bytes (e.g. '80 0c 00 00' or '01') to TinyDuino over GATT Handle 17.",
+      "url": "../../.agents/tools/tinyduino_send_raw.json",
+      "digest": "sha256:4c6d759cf82d50b730633bfc11bf0ba149a97017066d29cda2b252d9389e35d9"
+    },
+    {
+      "name": "tinyduino_set_led",
+      "description": "Control the TinyDuino onboard LED (Pin 13) and ASD2009 Proto Board LEDs. Modes: ON (force ON), OFF (force OFF), or AUTO (automatic BLE state blink).",
+      "url": "../../.agents/tools/tinyduino_set_led.json",
+      "digest": "sha256:2ac5aaa4c498bd00ca31ffbf8c8e5c65ce85adde749e51801cfa78c2ec2d2056"
+    },
+    {
+      "name": "tinyduino_stop_stream",
+      "description": "Stop continuous A0 LightMeter telemetry streaming from the TinyDuino.",
+      "url": "../../.agents/tools/tinyduino_stop_stream.json",
+      "digest": "sha256:e273b065dffaf34717bb1818aac7dbecc405082d4604a2a8ea69906cccf856e1"
+    },
+    {
+      "name": "tinyduino_stream_light",
+      "description": "Start continuous A0 LightMeter telemetry streaming from TinyDuino and optionally set sampling interval in ms (250, 500, 1000).",
+      "url": "../../.agents/tools/tinyduino_stream_light.json",
+      "digest": "sha256:8d0c7c01a2c0a80601e8c219d1dd2cba0a9b1cf83a6f8ada32511c33835cee9e"
     }
   ],
   "scripts": [
     {
-      "name": "starter-tools",
-      "description": "Portable ESM engine logic and tool execution handler for starter-tools.",
-      "url": "../../.agents/scripts/starter-tools.js",
-      "digest": "sha256:a31d699969cf4afdb61c5b84b084a51587dad1b0e087ac5d408168756cbf1bc0"
+      "name": "tinyduino-adapter",
+      "description": "Portable ESM engine logic and tool execution handler for tinyduino-adapter.",
+      "url": "../../.agents/scripts/tinyduino-adapter.js",
+      "digest": "sha256:7eee37f4ebbaefc57643b27cbb8e57710bd6b4ed9aa9d7c7d6c39a822b8b3736"
+    },
+    {
+      "name": "tinyduino-ble",
+      "description": "Portable ESM engine logic and tool execution handler for tinyduino-ble.",
+      "url": "../../.agents/scripts/tinyduino-ble.js",
+      "digest": "sha256:be06dd5a7042e8168912f7f7c1040b34c384116c5ac2d2bdc4eb0e2391deb4ac"
+    },
+    {
+      "name": "tinyduino-element",
+      "description": "Portable ESM engine logic and tool execution handler for tinyduino-element.",
+      "url": "../../.agents/scripts/tinyduino-element.js",
+      "digest": "sha256:81e3c5adf1e9a01276a913d7ed9d6852846c97c4aaccf7ae8761d2e7e7cdc939"
+    },
+    {
+      "name": "tinyduino",
+      "description": "Portable ESM engine logic and tool execution handler for tinyduino.",
+      "url": "../../.agents/scripts/tinyduino.js",
+      "digest": "sha256:cebca45691c331ebd094a264f1c24d49613ef2caa1287fb179caba9b380955db"
     }
   ],
   "dependencies": {
-    "tools": ["../../.agents/tools/generate_random_number.json"],
-    "scripts": ["../../.agents/scripts/starter-tools.js"]
+    "tools": [
+      "../../.agents/tools/tinyduino_ambient_level.json",
+      "../../.agents/tools/tinyduino_connect.json",
+      "../../.agents/tools/tinyduino_disconnect.json",
+      "../../.agents/tools/tinyduino_get_connection_status.json",
+      "../../.agents/tools/tinyduino_get_status.json",
+      "../../.agents/tools/tinyduino_read_light.json",
+      "../../.agents/tools/tinyduino_read_telemetry.json",
+      "../../.agents/tools/tinyduino_render_surface.json",
+      "../../.agents/tools/tinyduino_send_command.json",
+      "../../.agents/tools/tinyduino_send_raw.json",
+      "../../.agents/tools/tinyduino_set_led.json",
+      "../../.agents/tools/tinyduino_stop_stream.json",
+      "../../.agents/tools/tinyduino_stream_light.json"
+    ],
+    "scripts": [
+      "../../.agents/scripts/tinyduino-adapter.js",
+      "../../.agents/scripts/tinyduino-ble.js",
+      "../../.agents/scripts/tinyduino-element.js",
+      "../../.agents/scripts/tinyduino.js"
+    ]
   }
 }

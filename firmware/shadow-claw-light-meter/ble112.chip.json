@@ -1,0 +1,6 @@
+{
+  "name": "ASD2112 Bluegiga BLE112",
+  "author": "Karl Herrick",
+  "pins": ["VCC", "GND", "TX", "RX"],
+  "controls": []
+}

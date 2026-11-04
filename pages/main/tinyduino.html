@@ -1,0 +1,161 @@
+---
+title: "TinyDuino LightMeter Workbench"
+created: "2026-11-03T11:50:00Z"
+updated: "2026-11-03T11:50:00Z"
+slug: "tinyduino"
+iframe: false
+scripts:
+  - tinyduino-element
+  - tinyduino-adapter
+---
+
+<div class="tinyduino-workbench-page">
+  <div
+    style="
+      margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--shadow-claw-border-color, #1e293b);
+      padding-bottom: 1rem;
+    "
+  >
+    <h1
+      style="
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 1.6rem;
+        margin: 0 0 0.4rem 0;
+      "
+    >
+      <span>☀️ TinyDuino LightMeter</span>
+      <span
+        style="
+          background: linear-gradient(135deg, #f59e0b, #d97706);
+          color: #0b1120;
+          font-size: 0.72rem;
+          font-weight: 800;
+          letter-spacing: 0.05em;
+          padding: 0.2rem 0.65rem;
+          border-radius: 9999px;
+          text-transform: uppercase;
+          box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+        "
+        >Interactive Workbench</span
+      >
+    </h1>
+    <p
+      style="
+        color: var(--shadow-claw-text-secondary);
+        font-size: 0.9rem;
+        margin: 0;
+      "
+    >
+      Web Bluetooth GATT, BGAPI &amp; WebMCP sensory workbench for TinyDuino (<a
+        href="https://tinycircuits.com/collections/processors/products/tinyduino-processor-board?variant=14479557959"
+        target="_blank"
+        rel="noopener"
+        >ASM2001</a
+      >) + Bluegiga BLE112 (<a
+        href="https://learn.tinycircuits.com/Obsolete/BLE-bluegiga_TinyShield_Tutorial/"
+        target="_blank"
+        rel="noopener"
+        >ASD2112</a
+      >) + KY-018 Photoresistor on A0.
+    </p>
+  </div>
+
+  <tinyduino-control-panel></tinyduino-control-panel>
+
+  <div
+    style="
+      margin-top: 2rem;
+      padding: 1.25rem;
+      background: var(--shadow-claw-bg-secondary);
+      border: 1px solid var(--shadow-claw-border-color);
+      border-radius: 12px;
+    "
+  >
+    <h3
+      style="
+        margin-top: 0;
+        font-size: 1.1rem;
+        color: var(--shadow-claw-text-primary);
+      "
+    >
+      Hardware &amp; Documentation Guides
+    </h3>
+    <ul
+      style="
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 0.75rem;
+        padding-left: 1.25rem;
+        margin-bottom: 0;
+      "
+    >
+      <li>
+        <a href="/main/hardware-architecture/"
+          >01. Hardware Architecture &amp; Shield Stack</a
+        >
+      </li>
+      <li>
+        <a href="/main/wiring-schematic/"
+          >02. KY-018 Wiring &amp; Pin Routing</a
+        >
+      </li>
+      <li>
+        <a href="/main/ble112-bgapi/">03. Bluegiga BLE112 BGAPI Protocol</a>
+      </li>
+      <li>
+        <a href="/main/ky018-calibration/"
+          >04. Photoresistor Calibration &amp; Math</a
+        >
+      </li>
+      <li>
+        <a href="/main/field-diagnostics/"
+          >05. Field Diagnostics &amp; Architecture Audit</a
+        >
+      </li>
+      <li>
+        <a href="/main/divider-math/"
+          >06. Voltage Divider Derivation &amp; Math Proof</a
+        >
+      </li>
+      <li>
+        <a href="/main/wokwi-simulation/">07. Wokwi Hardware Simulation</a>
+      </li>
+      <li>
+        <a href="/main/firmware-guide/"
+          >08. Firmware Guide (shadow-claw-light-meter.ino)</a
+        >
+      </li>
+      <li>
+        <a href="/main/webmcp-tools/">09. Declarative WebMCP Tools</a>
+      </li>
+      <li>
+        <a href="/main/agent-skills/">10. Autonomous Agent Skills</a>
+      </li>
+      <li>
+        <a href="/main/workbench-ui/"
+          >11. Interactive Workbench &amp; Custom Elements</a
+        >
+      </li>
+      <li>
+        <a href="/main/namespace-isolation/"
+          >12. Namespace Isolation &amp; Architecture Guardrails</a
+        >
+      </li>
+      <li>
+        <a href="/main/troubleshooting/"
+          >13. Hardware &amp; Bluetooth Troubleshooting</a
+        >
+      </li>
+      <li>
+        <a href="/main/download-center/"
+          >14. Download Center (Sketches &amp; Chips)</a
+        >
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script type="module" src=".agents/scripts/tinyduino-adapter.js"></script>

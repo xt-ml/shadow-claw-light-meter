@@ -1,42 +1,215 @@
 ---
-title: "ShadowClaw Template"
-created: "1970-01-01T00:00:00Z"
-updated: "1970-01-01T00:00:00Z"
-slug: "shadow-claw-template"
+title: "TinyDuino LightMeter Portal"
+created: "2026-11-03T11:50:00Z"
+updated: "2026-11-03T15:45:00Z"
+slug: "index"
 ---
 
-<article>
-  <h2>Welcome to ShadowClaw Template</h2>
-  <p>
-    This site is built with
-    <a href="https://github.com/xt-ml/shadow-claw">ShadowClaw</a> and published
-    automatically via Github Actions
-  </p>
-  <p>
-    Content lives in pages/main/ as plain markdown files. Pushing to main
-    triggers a build that pre-renders each page into a fast, static site.
-  </p>
+<div class="portal-container">
+  <div class="portal-hero">
+    <div class="portal-hero-icon">
+      <span style="font-size: 2.2rem">☀️</span>
+    </div>
+    <h1 class="portal-title">TinyDuino LightMeter</h1>
+    <p class="portal-subtitle">
+      Hardware light meter workbench, Web Bluetooth GATT telemetry engine,
+      declarative WebMCP sensory tools, and autonomous agent skills for
+      TinyDuino (<a
+        href="https://tinycircuits.com/collections/processors/products/tinyduino-processor-board?variant=14479557959"
+        target="_blank"
+        rel="noopener"
+        >ASM2001</a
+      >) + Bluegiga BLE112 (<a
+        href="https://learn.tinycircuits.com/Obsolete/BLE-bluegiga_TinyShield_Tutorial/"
+        target="_blank"
+        rel="noopener"
+        >ASD2112</a
+      >) + KY-018 Photoresistor.
+    </p>
+    <div style="margin-top: 1.5rem">
+      <a
+        href="/main/tinyduino/"
+        class="portal-cta"
+        style="color: var(--shadow-claw-on-primary)"
+      >
+        <span style="color: var(--shadow-claw-on-primary)"
+          >Launch Interactive Workbench ➔</span
+        >
+      </a>
+    </div>
+  </div>
 
-  <h2>Pages</h2>
-  <ul>
-    <li><a href="/main/about/">About</a></li>
-  </ul>
-  <h2>How it works</h2>
-  <ol>
-    <li>Write markdown in pages/main/.</li>
-    <li>Optionally configure pretty-path URLs in pages/routes.json.</li>
-    <li>Push to main — Github Actions builds and deploys automatically.</li>
-  </ol>
+  <div class="portal-grid">
+    <div class="portal-card">
+      <div>
+        <h3>🔬 01. Hardware Architecture</h3>
+        <p>
+          Modular 4-layer stack breakdown: ATmega328P processor, Bluegiga BLE112
+          shield, Proto board, and KY-018 photoresistor.
+        </p>
+      </div>
+      <a href="/main/hardware-architecture/" class="card-link"
+        >Read Architecture Guide ➔</a
+      >
+    </div>
 
-  <hr
-    style="
-      margin: 2rem 0;
-      border: 0;
-      border-top: 1px solid var(--shadow-claw-border-color, #2a402e);
-    "
-  />
+    <div class="portal-card">
+      <div>
+        <h3>⚡ 02. Wiring &amp; Schematics</h3>
+        <p>
+          KY-018 3-pin routing, 10k pull-down divider circuit, and 3.3V logic
+          rail safety analysis.
+        </p>
+      </div>
+      <a href="/main/wiring-schematic/" class="card-link"
+        >Inspect Wiring Diagram ➔</a
+      >
+    </div>
 
-  <p style="text-align: center; margin-top: 1rem">
-    ➡️ <a href="/main/about/">Next Page</a>
-  </p>
-</article>
+    <div class="portal-card">
+      <div>
+        <h3>📡 03. BLE112 BGAPI Protocol</h3>
+        <p>
+          Web Bluetooth GATT Handle 17 writes, Handle 20 notifications, and
+          BlueZ 300ms CCCD settling delay.
+        </p>
+      </div>
+      <a href="/main/ble112-bgapi/" class="card-link"
+        >Explore BGAPI Protocol ➔</a
+      >
+    </div>
+
+    <div class="portal-card">
+      <div>
+        <h3>📐 04. Calibration &amp; Physics</h3>
+        <p>
+          CdS photoconductivity power-law curve, dynamic range calibration, and
+          ADC-to-lux conversion formulas.
+        </p>
+      </div>
+      <a href="/main/ky018-calibration/" class="card-link"
+        >View Calibration Specs ➔</a
+      >
+    </div>
+
+    <div class="portal-card">
+      <div>
+        <h3>🔍 05. Field Diagnostics &amp; Audit</h3>
+        <p>
+          Hardware bring-up field log, boot packet decoding, and Web Serial
+          break signal resilience.
+        </p>
+      </div>
+      <a href="/main/field-diagnostics/" class="card-link"
+        >Read Field Diagnostics ➔</a
+      >
+    </div>
+
+    <div class="portal-card">
+      <div>
+        <h3>📊 06. Divider Math &amp; Proof</h3>
+        <p>
+          Formal electrical proof and native MathML derivation demonstrating
+          High A0 = Bright across the pull-down divider.
+        </p>
+      </div>
+      <a href="/main/divider-math/" class="card-link">Study MathML Proof ➔</a>
+    </div>
+
+    <div class="portal-card">
+      <div>
+        <h3>🧪 07. Wokwi Simulation</h3>
+        <p>
+          Complete in-browser simulation with diagram.json, wokwi.toml, and
+          custom C-chip BLE112 emulation.
+        </p>
+      </div>
+      <a href="/main/wokwi-simulation/" class="card-link"
+        >Launch Simulation ➔</a
+      >
+    </div>
+
+    <div class="portal-card">
+      <div>
+        <h3>💾 08. Firmware Guide</h3>
+        <p>
+          4x-oversampled ADC acquisition, non-blocking telemetry stream rate
+          control, and upload script pipeline.
+        </p>
+      </div>
+      <a href="/main/firmware-guide/" class="card-link"
+        >Read Firmware Guide ➔</a
+      >
+    </div>
+
+    <div class="portal-card">
+      <div>
+        <h3>🤖 09. WebMCP Sensory Tools</h3>
+        <p>
+          13 declarative WebMCP tools enabling AI agents to read illuminance,
+          control LEDs, and stream telemetry.
+        </p>
+      </div>
+      <a href="/main/webmcp-tools/" class="card-link">Explore WebMCP Tools ➔</a>
+    </div>
+
+    <div class="portal-card">
+      <div>
+        <h3>🧠 10. Autonomous Agent Skills</h3>
+        <p>
+          Autonomous agent skills conforming to the Agent Skills open standard:
+          /lightmeter, /nightlight, /tinyduino-doctor, /daylight-harvest.
+        </p>
+      </div>
+      <a href="/main/agent-skills/" class="card-link">Browse Agent Skills ➔</a>
+    </div>
+
+    <div class="portal-card">
+      <div>
+        <h3>🖥️ 11. Interactive Workbench UI</h3>
+        <p>
+          Custom element architecture, real-time SVG gauge dials, scrolling
+          waveform timeline, and WebMCP bridge.
+        </p>
+      </div>
+      <a href="/main/workbench-ui/" class="card-link">Explore Workbench UI ➔</a>
+    </div>
+
+    <div class="portal-card">
+      <div>
+        <h3>🛡️ 12. Namespace Isolation</h3>
+        <p>
+          Strict namespace isolation contract guaranteeing zero naming
+          collisions across tools, elements, and channels.
+        </p>
+      </div>
+      <a href="/main/namespace-isolation/" class="card-link"
+        >Verify Isolation ➔</a
+      >
+    </div>
+
+    <div class="portal-card">
+      <div>
+        <h3>🔧 13. Troubleshooting Guide</h3>
+        <p>
+          Diagnosing BlueZ GATT error 133, Web Bluetooth experimental flags, and
+          CCCD timing resolution.
+        </p>
+      </div>
+      <a href="/main/troubleshooting/" class="card-link"
+        >Read Troubleshooting ➔</a
+      >
+    </div>
+
+    <div class="portal-card">
+      <div>
+        <h3>📦 14. Download Center</h3>
+        <p>
+          Direct access to raw sketch files (shadow-claw-light-meter.ino), BGLib
+          submodule, Wokwi models, and JavaScript tools.
+        </p>
+      </div>
+      <a href="/main/download-center/" class="card-link">Go to Downloads ➔</a>
+    </div>
+  </div>
+</div>

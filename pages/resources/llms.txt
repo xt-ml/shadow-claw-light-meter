@@ -1,18 +1,29 @@
-# [ShadowClaw Template](https://xt-ml.github.io/shadow-claw-template/)
+# [TinyDuino LightMeter](https://xt-ml.github.io/shadow-claw-light-meter/)
 
-> Starter template for publishing a static site with ShadowClaw as the build engine. Content lives in `pages/main/`; the included GitHub Actions workflow builds and deploys to GitHub Pages.
+> Hardware light meter workbench, Web Bluetooth / BGAPI telemetry, declarative WebMCP sensory tools, and agentic skills for TinyDuino (ASM2001), Bluegiga BLE112 (ASD2112), and KY-018 photoresistor. Published with ShadowClaw.
 
-## Docs
+## Workbench & Interactive Surface
 
-- [README](https://xt-ml.github.io/shadow-claw-template/README.md): How the template works and local development
-- [AGENTS.md](https://xt-ml.github.io/shadow-claw-template/AGENTS.md): Conventions for AI agents working on a template site
+- [TinyDuino Workbench](https://xt-ml.github.io/shadow-claw-light-meter/main/tinyduino): Real-time Web Bluetooth GATT telemetry, live waveform chart, divider calibration, LED controls, and packet inspector.
+- [Portal Index](https://xt-ml.github.io/shadow-claw-light-meter/main): Overview portal and hardware documentation index.
 
-## Pages
+## Documentation & Hardware Guides
 
-- [Home](https://xt-ml.github.io/shadow-claw-template/main)
-- [About](https://xt-ml.github.io/shadow-claw-template/main/about)
-- [Memory](https://xt-ml.github.io/shadow-claw-template/main/memory)
+- [Hardware Architecture](https://xt-ml.github.io/shadow-claw-light-meter/main/hardware-architecture): Modular stack layout (ASM2001 + ASD2112 + ASD2009 Proto Shield + KY-018).
+- [Wiring & Schematic](https://xt-ml.github.io/shadow-claw-light-meter/main/wiring-schematic): Exact pin routing, voltage divider circuit, and pull-up configuration.
+- [BLE112 BGAPI Protocol](https://xt-ml.github.io/shadow-claw-light-meter/main/ble112-bgapi): GATT UUIDs (195ae58a, 21819ab0), BGAPI binary framing, CCCD 300ms settle timing.
+- [KY-018 Calibration & Math](https://xt-ml.github.io/shadow-claw-light-meter/main/ky018-calibration): Steinhart-Hart photoresistor curve, lux estimation, and divider polarity.
+- [Field Diagnostics & Architecture Audit](https://xt-ml.github.io/shadow-claw-light-meter/main/field-diagnostics/): Technical audit and boot packet analysis.
+- [Voltage Divider Derivation & MathML](https://xt-ml.github.io/shadow-claw-light-meter/main/divider-math/): Mathematical proof and MathML formulas resolving light/dark physics.
+- [Wokwi Simulation](https://xt-ml.github.io/shadow-claw-light-meter/main/wokwi-simulation): diagram.json, wokwi.toml, and custom BLE112 C chip model.
+- [Firmware Guide](https://xt-ml.github.io/shadow-claw-light-meter/main/firmware-guide): shadow-claw-light-meter.ino, BGLib submodule, and compilation scripts.
+- [WebMCP Sensory Tools](https://xt-ml.github.io/shadow-claw-light-meter/main/webmcp-tools): 13 declarative tools with strict input schemas and read-only annotations.
+- [Agent Skills](https://xt-ml.github.io/shadow-claw-light-meter/main/agent-skills): Agentic workflows (/lightmeter, /nightlight, /tinyduino-doctor, /daylight-harvest).
+- [Interactive Workbench UI](https://xt-ml.github.io/shadow-claw-light-meter/main/workbench-ui): Custom element, SVG gauge, waveform chart, and WebMCP bridge.
+- [Namespace Isolation](https://xt-ml.github.io/shadow-claw-light-meter/main/namespace-isolation): Strict namespace isolation and collision prevention contract.
+- [Troubleshooting & BlueZ GATT](https://xt-ml.github.io/shadow-claw-light-meter/main/troubleshooting): Resolution of GATT operation failures and connection resets.
+- [Download Center](https://xt-ml.github.io/shadow-claw-light-meter/main/download-center): Direct download links for sketches, firmware, chips, and tools.
 
 ## Related
 
-- [ShadowClaw](https://xt-ml.github.io/shadow-claw/llms.txt)
+- [ShadowClaw](https://xt-ml.github.io/shadow-claw/llms.txt): Core dual-runtime AI assistant framework.

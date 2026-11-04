@@ -1,0 +1,3 @@
+[submodule "firmware/lib/bglib"]
+	path = firmware/lib/bglib
+	url = https://github.com/jrowberg/bglib

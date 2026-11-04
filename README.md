@@ -1,350 +1,160 @@
-# [ShadowClaw Template](https://xt-ml.github.io/shadow-claw-template/)
+# ☀️ TinyDuino LightMeter (`shadow-claw-light-meter`)
 
-[![Ask DeepWiki](https://img.shields.io/badge/DeepWiki-xt--ml%2fshadow--claw--template-blue.svg)](https://deepwiki.com/xt-ml/shadow-claw-template)
+> Hardware light meter workbench, Web Bluetooth / BGAPI telemetry engine, declarative WebMCP sensory tools, and autonomous agent skills for **TinyDuino (ASM2001)** + **Bluegiga BLE112 (ASD2112)** + **KY-018 Photoresistor** on **Analog Pin A0**, published with [ShadowClaw](https://github.com/xt-ml/shadow-claw).
 
-This is a starter template for publishing your own static site using
-[ShadowClaw](https://github.com/xt-ml/shadow-claw) as the build engine.
-
-## How it works
-
-1. You write your content as markdown (`.md`) or HTML (`.html`) files under
-   `pages/main/`.
-2. You can add Agent Skills under `.agents/skills/`. Each skill is a directory containing a standard `SKILL.md`; these skills are available to the main ShadowClaw conversation.
-3. You can add Declarative Tools under `.agents/tools/` as JSON files to declare custom executable tools for your site.
-4. When you push to `main`, the included GitHub Actions workflow:
-   - Checks out ShadowClaw's source as a **build dependency** (not redistributed).
-   - Copies your `pages/` and `.agents/` into the build root.
-   - Runs `npm run build:prod` with your repo's GitHub Pages URL injected
-     automatically.
-   - Deploys `dist/public/` to GitHub Pages via `actions/deploy-pages`.
-
-No ShadowClaw source lives in this repo — only your content and the workflow.
-
-## Local Development
-
-To run or build your template site locally, use the `shadow-claw` CLI:
+## 🚀 Quick Start (Just Get Going)
 
 ```bash
-# Preview and run live dev server on http://127.0.0.1:8888
-npx shadow-claw dev
+npm start
+```
 
-# Or build the static distribution locally into ./dist/public
+_Builds the LightMeter site, launches the local server on `http://127.0.0.1:8888`, and opens your browser directly to the interactive workbench._
+
+---
+
+- **Interactive Workbench**: [`/main/tinyduino`](https://xt-ml.github.io/shadow-claw-light-meter/main/tinyduino) (direct top-level execution with Web Bluetooth)
+- **Portal Index**: [`/main`](https://xt-ml.github.io/shadow-claw-light-meter/main)
+- **Live Wokwi Simulation**: [https://wokwi.com/projects/479603659463545857](https://wokwi.com/projects/479603659463545857)
+- **Agent Skills Discovery**: `/.well-known/agent-skills/index.json`
+
+---
+
+## 🔬 Hardware Architecture
+
+```mermaid
+graph TD
+  A["Layer 4 (Top): Proto Board TinyShield (ASD2009 Rev 1)<br/>KY-018 LDR Module + Signal Wiring"] --> B["Layer 3: Bluetooth LE TinyShield (ASD2112 Rev 2)<br/>Bluegiga BLE112 Smart Module (BGAPI)"]
+  B --> C["Layer 2: USB TinyShield (ASD2101 Rev 6)<br/>FTDI FT231X UART Programmer (DTR Reset)"]
+  C --> D["Layer 1 (Bottom): TinyDuino Processor Board (ASM2001 Rev 9)<br/>ATmega328P @ 8 MHz, 3.3V System Logic"]
+```
+
+The hardware stack is composed of miniature 20mm × 20mm TinyShields following the [TinyDuino Setup Tutorial](https://learn.tinycircuits.com/Processors/TinyDuino_Setup_Tutorial/) and [TinyShield Compatibility Matrix](https://tinycircuits.com/pages/tinyduino-overview#tinyshield-compatibility):
+
+1. **[TinyDuino Processor Board (`ASM2001 Rev 9`)](https://tinycircuits.com/collections/processors/products/tinyduino-processor-board?variant=14479557959)**: ATmega328P @ 8 MHz, 3.3V logic, 32 KB Flash, 2 KB SRAM.
+2. **[Bluetooth Low Energy TinyShield (`ASD2112 Rev 2`)](https://learn.tinycircuits.com/Obsolete/BLE-bluegiga_TinyShield_Tutorial/)**: Bluegiga BLE112 Bluetooth Smart module running `BGLib_U1A1P_38400_noflow` firmware over `SoftwareSerial(3, 4)` at 38,400 baud.
+3. **[USB TinyShield (`ASD2101 Rev 6`)](https://tinycircuits.com/products/usb-tinyshield?variant=14982646535)**: FTDI FT231X USB-to-UART bridge with DTR auto-reset for sketch flashing at 115,200 baud.
+4. **[Proto Board TinyShield (`ASD2009 Rev 1`)](https://tinycircuits.com/products/proto-board-tinyshield?variant=14984618887)**: Houses the 3-pin KY-018 photoresistor module wired to `VCC` (3.3V), `GND`, and `Pin A0`.
+
+---
+
+## 🌟 Interactive Workbench Features
+
+Accessible at [`pages/main/tinyduino.html`](pages/main/tinyduino.html) (`/main/tinyduino`):
+
+- **☀️ Real-Time LightMeter Visualizer**: Large percentage gauge (0–100%), lighting condition classification (`direct_sun`, `daylight`, `indoor`, `dark_indoor`, `night`), signal voltage (3.3V ref), estimated illuminance in lux, and dynamic session min/max tracking.
+- **📈 60-Sample Waveform Canvas**: Rolling analog brightness chart rendered directly to HTML5 canvas.
+- **⚡ Web Bluetooth GATT Transport**: Direct connection to Bluegiga Data Transceiver Service (`195ae58a-...` Handle 17 write, Handle 20 notify) with a mandatory 300ms CCCD settling delay for BlueZ Linux compatibility.
+- **🎮 Hardware Controls**: Toggle Onboard LED (Pin 13) and Proto LED (Pin 7) between `ON`, `OFF`, and `AUTO` (BLE connection heartbeat).
+- **⏱️ Non-Blocking Telemetry Streaming**: Start/stop live streaming with adjustable intervals: 250ms (4 Hz), 500ms (2 Hz), 1000ms (1 Hz).
+- **🔍 GATT & BGAPI Packet Inspector**: Real-time filterable log displaying TX/RX packets, hex byte representations, and status acknowledgments.
+- **🧪 Offline Hardware Simulation**: Fully functional virtual simulator for testing when disconnected from physical hardware.
+
+---
+
+## 📚 Documentation & Hardware Guides
+
+| Chapter                       | Pretty Path                                                    | Description                                                                            |
+| :---------------------------- | :------------------------------------------------------------- | :------------------------------------------------------------------------------------- |
+| **01. Hardware Architecture** | [`/main/hardware-architecture/`](/main/hardware-architecture/) | 4-layer stack diagram, pinouts, and power distribution                                 |
+| **02. Wiring Schematic**      | [`/main/wiring-schematic/`](/main/wiring-schematic/)           | KY-018 photoresistor wiring, 10k pull-down divider, and 3.3V rail safety               |
+| **03. BLE112 BGAPI Protocol** | [`/main/ble112-bgapi/`](/main/ble112-bgapi/)                   | GATT UUIDs, Handle 17/20, BGAPI framing, and BlueZ 300ms CCCD settling delay           |
+| **04. KY-018 Calibration**    | [`/main/ky018-calibration/`](/main/ky018-calibration/)         | Photoconductive power-law curve, ADC-to-lux math, and polarity modes                   |
+| **05. Field Diagnostics**     | [`/main/field-diagnostics/`](/main/field-diagnostics/)         | Field report: hardware verification, boot packet decoding, and break handling          |
+| **06. Divider Math & MathML** | [`/main/divider-math/`](/main/divider-math/)                   | Voltage divider proof with native MathML resolving light/dark inversion                |
+| **07. Wokwi Simulation**      | [`/main/wokwi-simulation/`](/main/wokwi-simulation/)           | In-browser breadboard simulation with custom C-chip BLE112 emulation                   |
+| **08. Firmware Guide**        | [`/main/firmware-guide/`](/main/firmware-guide/)               | `shadow-claw-light-meter.ino` 4x oversampled ADC, BGLib submodule, and `bin/upload.sh` |
+| **09. WebMCP Sensory Tools**  | [`/main/webmcp-tools/`](/main/webmcp-tools/)                   | 13 declarative WebMCP tools with schemas, annotations, and DevTools usage              |
+| **10. Agent Skills**          | [`/main/agent-skills/`](/main/agent-skills/)                   | Autonomous agent skills (/lightmeter, /nightlight, /tinyduino-doctor, etc.)            |
+| **11. Workbench UI**          | [`/main/workbench-ui/`](/main/workbench-ui/)                   | Interactive `<tinyduino-control-panel>`, real-time SVG gauge, and waveform chart       |
+| **12. Namespace Isolation**   | [`/main/namespace-isolation/`](/main/namespace-isolation/)     | Strict namespace isolation and collision prevention contract                           |
+| **13. Troubleshooting**       | [`/main/troubleshooting/`](/main/troubleshooting/)             | Diagnosing BlueZ GATT Error 133, Web Serial breaks, and DevTools WebMCP                |
+| **14. Download Center**       | [`/main/download-center/`](/main/download-center/)             | Direct downloads for sketches, Wokwi diagram, BLE112 C chip, and scripts               |
+
+---
+
+## 🤖 13 Declarative WebMCP Sensory Tools
+
+Defined in [`bin/tool-manifest.mjs`](bin/tool-manifest.mjs) and generated into [`.agents/tools/*.json`](.agents/tools/):
+
+| Tool Name                         | Annotations | Description                                                                                                 |
+| :-------------------------------- | :---------: | :---------------------------------------------------------------------------------------------------------- |
+| `tinyduino_read_light`            |  Read-Only  | Triggers 4x-oversampled A0 analog read over GATT Handle 17 and returns live lux, voltage, and brightness %. |
+| `tinyduino_get_status`            |  Read-Only  | Retrieves current connection state, recent samples, and telemetry without transmitting a packet.            |
+| `tinyduino_set_led`               |  Mutating   | Controls LED mode: `ON`, `OFF`, or `AUTO` (connection blink).                                               |
+| `tinyduino_stream_light`          |  Mutating   | Starts continuous telemetry streaming at 250ms, 500ms, or 1000ms intervals.                                 |
+| `tinyduino_stop_stream`           |  Mutating   | Halts continuous telemetry streaming.                                                                       |
+| `tinyduino_send_command`          |  Mutating   | Sends arbitrary ASCII text command string to GATT Handle 17.                                                |
+| `tinyduino_send_raw`              |  Mutating   | Sends raw hexadecimal bytes to GATT Handle 17.                                                              |
+| `tinyduino_connect`               |  Mutating   | Launches Web Bluetooth chooser or starts offline hardware simulation.                                       |
+| `tinyduino_disconnect`            |  Mutating   | Closes GATT connection or terminates simulation.                                                            |
+| `tinyduino_get_connection_status` |  Read-Only  | Returns connection mode (`connected`, `simulated`, `disconnected`) and packet stats.                        |
+| `tinyduino_read_telemetry`        |  Read-Only  | Structured snapshot of raw ADC, signal voltage, lux, and category.                                          |
+| `tinyduino_render_surface`        |  Read-Only  | Embeds the interactive `<tinyduino-control-panel>` component into chat.                                     |
+| `tinyduino_ambient_level`         |  Read-Only  | Lightweight sensory check returning lux, category, and Matter 0x0400 cluster values.                        |
+
+---
+
+## 🧠 Agent Skills & Slash Commands
+
+Conforming to the **Agent Skills** open specification under [`.agents/skills/`](.agents/skills/):
+
+| Slash Command       | Skill Directory                                                               | Description                                                                           |
+| :------------------ | :---------------------------------------------------------------------------- | :------------------------------------------------------------------------------------ |
+| `/lightmeter`       | [`.agents/skills/lightmeter`](.agents/skills/lightmeter/SKILL.md)             | Reads live illuminance, classifies ambient lighting, and displays visualizer.         |
+| `/nightlight`       | [`.agents/skills/nightlight`](.agents/skills/nightlight/SKILL.md)             | Monitors darkness with hysteresis and controls Pin 13 / Pin 7 LEDs automatically.     |
+| `/tinyduino-status` | [`.agents/skills/tinyduino-status`](.agents/skills/tinyduino-status/SKILL.md) | Comprehensive diagnostic inspecting connection mode, packet counts, and metrics.      |
+| `/tinyduino-doctor` | [`.agents/skills/tinyduino-doctor`](.agents/skills/tinyduino-doctor/SKILL.md) | Troubleshooting doctor for GATT Error 133, CCCD settling, and connection drops.       |
+| `/daylight-harvest` | [`.agents/skills/daylight-harvest`](.agents/skills/daylight-harvest/SKILL.md) | Calculates artificial lighting offsets based on measured natural room daylight.       |
+| `/dusk-trigger`     | [`.agents/skills/dusk-trigger`](.agents/skills/dusk-trigger/SKILL.md)         | Triggers smart home scenes based on physical dusk (lux < 30) instead of solar tables. |
+
+---
+
+## 🖥️ Interactive Workbench & Custom Elements
+
+The TinyDuino LightMeter provides an interactive workbench rendered via custom Web Components in [`.agents/scripts/tinyduino-element.js`](.agents/scripts/tinyduino-element.js):
+
+- **Custom Component (`<tinyduino-control-panel>`)**: Embeds dual SVG dials for calibrated illuminance (0..5000+ lx) and raw 10-bit ADC counts (0..1023).
+- **Live Waveform Visualizer**: Rolling time-series plot tracking ambient light trends and transient changes.
+- **WebMCP Integration**: Seamlessly dispatches commands and streams telemetry across `BroadcastChannel` buses.
+
+---
+
+## 🛠️ Local Development & Commands
+
+```bash
+# Run all unit tests
+npm test
+
+# Run compatibility and tool manifest drift checks
+npm run check
+
+# Recompile firmware with BGLib submodule
+npm run compile:firmware
+
+# Flash firmware to TinyDuino
+./bin/upload.sh /dev/ttyUSB0
+
+# Regenerate declarative tools and skills index
+npm run build:tools
+npm run skills:index
+
+# Build static distribution into dist/public
 npx shadow-claw build
+
+# Launch local preview server
+npx shadow-claw dev
 ```
 
-## Quick start
-
-1. Click **Use this template** on GitHub (or fork/clone).
-2. In your new repo, go to **Settings → Pages → Source** and select
-   **GitHub Actions**.
-3. Optionally drop your markdown files into `pages/main/`. A repository with
-   no `pages/` directory still builds with ShadowClaw's default Pages content.
-4. Optionally add skills under `.agents/skills/`; a repository without that directory simply has no bundled skills.
-5. Optionally add tools under `.agents/tools/`; a repository without that directory has no bundled custom tools.
-6. Optionally configure `shadow-claw.config.json` (repo root) for site branding, sidebar navigation visibility, initial tool enablement (`enabledTools`), and page sort order.
-7. Optionally edit `pages/resources/routes.json` to add pretty-path URLs.
-8. Push to `main` — the workflow builds and deploys automatically.
-
-## Directory layout
-
-```txt
-shadow-claw.config.json   ← declarative site branding, sidebar, enabled tools, and sorting config
-pages/
-  main/
-    index.html        ← your home page
-    ~/content/
-      about.md        ← any other pages
-  resources/          ← root level files & resources (routes.json, 404.html, manifest.json, sitemap.xml / sitemap.txt, favicon.svg, assets/)
-.agents/
-  skills/
-    toast-random-number/
-      SKILL.md      ← optional Agent Skills for the main conversation
-  tools/
-    generate_random_number.json ← optional executable tool definition
-  scripts/
-    starter-tools.js ← portable ESM logic with zero DOM dependencies
-.well-known/
-  agent-skills/
-    index.json        ← standard skills discovery index (RFC v0.2.0)
-.github/
-  workflows/
-    deploy-pages.yml  ← the build + deploy workflow (no changes needed)
-```
-
-### 🌐 Agent Skills Discovery via Well-Known Endpoint
-
-External AI agents and peer ShadowClaw instances discover and consume your skills headlessly over HTTPS per the [Agent Skills Discovery RFC](https://github.com/cloudflare/agent-skills-discovery-rfc) via:
-
-```
-/.well-known/agent-skills/index.json
-```
-
-Generate or refresh this index anytime using the ShadowClaw CLI:
-
-```bash
-npx shadow-claw skills:index
-```
-
-### 🧩 Decoupled Architecture: Scripts vs. Presentation Adapters
-
-To make your tools reusable across both headless worker threads and on-page UI components:
-
-- **Portable Scripts (`.agents/scripts/<name>.js`)**: Pure ESM containing business logic, computations, and parameter normalization. Zero DOM or browser dependencies.
-- **Presentation Adapters (`pages/main/<name>-adapter.js`)**: Imports portable scripts to synchronize custom elements, render UI controls, and bridge `BroadcastChannel` events.
-
-### Declarative Agent Skills (`.agents/skills/`)
-
-Agent Skills follow the open Agent Skills format. Place skills in `.agents/skills/<skill-name>/SKILL.md`.
-
-#### Frontmatter specification
-
-- **Required fields**:
-  - `name`: 1–64 characters using lowercase letters, digits, and single hyphens.
-  - `description`: Up to 1,024 characters describing what the skill does.
-- **Optional standard fields**:
-  - `license`, `compatibility`, `user-invocable`, `disable-model-invocation`, `argument-hint`.
-  - `metadata`: Key-value map for skill metadata. Tool allowlists belong under `metadata.allowed-tools` (e.g. `allowed-tools: javascript show_toast generate_random_number`).
-  - `execution`: Defines deterministic execution tool chains.
-
-#### Slash Commands & User Invocability
-
-Skills with `user-invocable: true` (or where `user-invocable` is omitted) can be invoked directly by users in chat using slash commands matching the skill name (for example `/toast-random-number` or `/skill-creator`).
-
-#### Declarative Execution Pipelines (`execution.type: "tools"`)
-
-Skills can define deterministic, sequential tool pipelines in frontmatter. When triggered via slash command or agent invocation, tool chains execute directly via `executeToolChain` on the worker thread without scheduling LLM prompts or calling model endpoints.
-
-```yaml
----
-name: toast-random-number
-description: Generate a random integer from 1 to 1000000 and display it in a toast notification silently.
-user-invocable: true
-metadata:
-  allowed-tools: javascript show_toast generate_random_number
-execution:
-  type: tools
-  suppressToast: true
-  suppressOutput: true
-  tools:
-    - name: generate_random_number
-      input:
-        min: 1
-        max: 1000000
-    - name: show_toast
-      input:
-        title: Random Number
-        message:
-          $pipe: prev
----
-```
-
-#### Pipeline Features
-
-1. **Output Pipelining (`$pipe`)**: Pass outputs between steps using:
-   - `{ "$pipe": "prev" }` — output of the immediately preceding step.
-   - `{ "$pipe": 0 }` — output of step index 0.
-   - `{ "$pipe": "generate_random_number" }` — output of the step executing `generate_random_number`.
-2. **Notification & Output Suppression**:
-   - `suppressToast: true` — suppresses step-by-step progress toasts ("Running skill tool...").
-   - `suppressOutput: true` — suppresses raw step output blocks from cluttering the chat thread.
-   - Setting suppression at the top-level `execution` block automatically cascades down to all steps in the chain.
-3. **Auto-returning JavaScript Evaluation**: Single expressions in `javascript` tool steps (e.g., `Math.floor(Math.random() * 100) + 1`) evaluate and return automatically without requiring explicit `return` statements.
-
-#### Storage & Scope
-
-Skills are seeded into the main conversation's OPFS workspace (`.agents/skills/`) on initial boot. They do not become host filesystem commands and are scoped to the main workspace.
+> **Submodule Setup**: If cloning without `--recurse-submodules`, initialize the BGLib submodule with `git submodule update --init --recursive`.
 
 ---
 
-### Declarative Tools (`.agents/tools/`)
+## 📄 License
 
-Add executable tools under `.agents/tools/` as JSON files. Each file defines a standard tool schema and an explicit `execution` object.
+AGPLv3.
 
-```json
-{
-  "name": "generate_random_number",
-  "description": "Generate a random integer within a specified range.",
-  "input_schema": {
-    "type": "object",
-    "properties": {
-      "min": { "type": "integer", "description": "Minimum value (inclusive)" },
-      "max": { "type": "integer", "description": "Maximum value (inclusive)" }
-    },
-    "required": ["min", "max"]
-  },
-  "execution": {
-    "type": "javascript",
-    "code": "const input = typeof data === 'string' ? JSON.parse(data) : data; const min = Number(input?.min ?? 1); const max = Number(input?.max ?? 100); return Math.floor(Math.random() * (max - min + 1)) + min;"
-  }
-}
-```
+### Third-Party Code & Attribution
 
-#### Execution Types
+This project incorporates third-party software under permissive licensing:
 
-- **`javascript`**: Runs inside ShadowClaw's sandboxed JavaScript worker. The parsed arguments are available via `data`. Single expressions evaluate and return automatically.
-- **`bash`**: Runs through the sandboxed JS shell / WebVM. Arguments are passed as serialized JSON via `stdin`.
-- **`tool`**: Delegates to another allowlisted ShadowClaw tool with optional pre-configured input parameter merging.
-
-#### Execution Guardrails & WebMCP:
-
-- Tool names must match `^[a-z][a-z0-9_]{0,63}$`.
-- Built-in tool names cannot be shadowed.
-- Declarative tool delegation is capped at eight levels to prevent recursion loops.
-- Loaded declarative tools automatically register with the browser's WebMCP Model Context API (`document.modelContext` / `navigator.modelContext`) for native model execution.
-
----
-
-## Declarative Site Configuration (`shadow-claw.config.json`)
-
-Configure your site metadata, branding, navigation visibility, tool defaults, and sorting declaratively without touching source code:
-
-```json
-{
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "site": {
-    "title": "My Site",
-    "description": "Published with ShadowClaw",
-    "themeColor": "#121212",
-    "lang": "en"
-  },
-  "branding": {
-    "titleText": "My Project",
-    "siteUrl": "https://example.com",
-    "repoUrl": "https://github.com/my-user/my-project"
-  },
-  "sidebar": {
-    "pagesHidden": false,
-    "chatHidden": false,
-    "tasksHidden": true,
-    "filesHidden": false,
-    "defaultPage": "pages"
-  },
-  "pages": {
-    "sortOrder": "desc"
-  },
-  "enabledTools": [
-    "bash",
-    "javascript",
-    "read_file",
-    "write_file",
-    "generate_random_number"
-  ],
-  "customElements": {
-    "allowedElements": ["block-garden", "block-garden-select", "x-pwgen"],
-    "allowedDomains": ["kherrick.github.io", "xt-ml.github.io"],
-    "scripts": [
-      "https://kherrick.github.io/block-garden/block-garden-bundle-min.mjs"
-    ]
-  }
-}
-```
-
-### Initial Tool Enablement (`enabledTools`)
-
-`enabledTools` specifies the initial active tool profile applied on first run for the main conversation. When omitted, ShadowClaw uses its standard default tool profile. User modifications made later in the UI are preserved.
-
-### Version Pinning
-
-ShadowClaw builds via `npx --yes shadow-claw@latest build --prod`. To pin to a specific npm release (e.g. `1.23.3`), specify the version in `.github/workflows/deploy-pages.yml` or supply `shadowclaw_version` when triggering the GitHub Actions workflow manually.
-
-### Skill & Page Purge Markers
-
-To reset bundled skills on a later deployment, add a Markdown file under `.agents/skills/` with this frontmatter, updating `purge-id` for each reset:
-
-```markdown
----
-slug: shadow-claw--purge-skills
-purge-id: skills-build-002
----
-```
-
-The purge marker is removed from the catalog before seeding, and the main conversation's `.agents/skills/` OPFS directory is cleared and re-seeded with current published skills. Page purge markers (`slug: shadow-claw--purge-pages`) operate independently.
-
-### Sidebar Visibility Options
-
-You can hide or show individual sidebar navigation items (`pagesHidden`, `chatHidden`, `tasksHidden`, `filesHidden`) and set the default landing section (`defaultPage`: `"pages"` | `"chat"` | `"tasks"` | `"files"`). When hidden, the corresponding section is hidden from the sidebar at build time and on first boot.
-
-### Custom Element & Script Security (`customElements`)
-
-ShadowClaw enforces a deny-by-default security stance on custom elements and external scripts rendered within articles and pages. Site authors can declare approved elements and trusted host domains in `customElements`:
-
-- `allowedElements`: List of custom element tag names permitted in page markup and HTML sanitization (e.g. `["block-garden", "block-garden-select"]`). Unapproved custom elements are blocked from registration and stripped from the DOM.
-- `allowedDomains`: List of approved domains or wildcard patterns (e.g. `["kherrick.github.io", "*.github.io"]`) permitted to load scripts or custom element bundles.
-- `scripts`: Array of approved script URLs (or objects `{ "src": "...", "type": "module" }`) to preload at build time and on boot.
-
----
-
-## Pretty paths (`routes.json`)
-
-Map source files to clean URLs:
-
-```json
-{
-  "routes": {
-    "/pages/main/index.html": { "prettyPath": "/main" },
-    "/pages/main/~/content/about.md": { "prettyPath": "/main/about" },
-    "/pages/main/MEMORY.md": { "prettyPath": "/main/memory" }
-  }
-}
-```
-
-The prerender pipeline generates a physical `index.html` for every mapped path so direct links and page refreshes work correctly on GitHub Pages without any server-side rewrites.
-
-> **Reserved path prefixes** — the following first-path-segments are owned by ShadowClaw's router and **must not** be used as pretty path prefixes: `/`, `/chat`, `/files`, `/tasks`, `/pages`, `/settings`, `/tools`, `/channels`. Additionally, `/` (root) is reserved as the default pinned page and is unreachable as a pretty path. Use a safe namespace like `/main/`, `/articles/`, `/docs/`, or any other prefix that doesn't conflict with the above list.
-
----
-
-## Default Pinned Page (`/`)
-
-When a visitor loads the root URL (`/`) of your published site, ShadowClaw automatically displays the **default pinned page**.
-
-### How ShadowClaw selects the default page for `/`:
-
-1. Both the static site build pipeline (`prerender-dsd-shell`) and runtime page store (`orchestratorStore`) collect all files in `pages/main/`.
-2. `MEMORY.md` is always sorted to the bottom of the list.
-3. All other pages are sorted by `pages.sortOrder` from `shadow-claw.config.json` (`"desc"` by default, natural numeric, or `"asc"`).
-4. The first file in this sorted list (`pages[0]`) becomes the **default page** pre-rendered into the DSD shell at `/`.
-
----
-
-## Custom domain
-
-If you use a custom apex domain (e.g. `example.com`), override the two URL env vars in the workflow:
-
-```yaml
-env:
-  PAGES_ORIGIN: "https://example.com/"
-  PAGES_BASE_PATH: "/"
-```
-
----
-
-## In-browser automation (optional)
-
-You can drive publishing from inside the ShadowClaw app itself using a `type: "tools"` task chain — no LLM calls required:
-
-```json
-{
-  "type": "tools",
-  "tools": [
-    {
-      "name": "write_file",
-      "input": {
-        "path": "repos/my-site/pages/main/post.md",
-        "content": "# Hello\n\nContent."
-      }
-    },
-    {
-      "name": "git_add",
-      "input": { "repo": "my-site", "files": ["pages/main/post.md"] }
-    },
-    {
-      "name": "git_commit",
-      "input": { "repo": "my-site", "message": "publish: new post" }
-    },
-    { "name": "git_push", "input": { "repo": "my-site" } }
-  ]
-}
-```
-
-Pushing triggers the workflow, which builds and publishes the site automatically.
+- **[BGLib](https://github.com/jrowberg/bglib)** (Silicon Labs / Jeff Rowberg BGAPI host library) integrated via git submodule at [`firmware/lib/bglib`](https://github.com/jrowberg/bglib), licensed under the **MIT License** (Copyright © Silicon Laboratories / Jeff Rowberg). See [`firmware/lib/bglib/LICENSE.md`](firmware/lib/bglib/LICENSE.md).

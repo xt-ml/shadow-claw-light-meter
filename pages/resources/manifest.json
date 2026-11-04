@@ -1,12 +1,13 @@
 {
-  "background_color": "#000000",
-  "description": "ShadowClaw Template - Browser-native AI agent.",
+  "background_color": "#0b1120",
+  "description": "Hardware light meter workbench and agentic sensory skills for TinyDuino, BLE112, and KY-018 photoresistor.",
   "display": "standalone",
-  "id": "shadow-claw",
-  "name": "ShadowClaw",
-  "short_name": "ShadowClaw",
+  "id": "tinyduino-light-meter",
+  "name": "TinyDuino LightMeter",
+  "short_name": "LightMeter",
   "start_url": ".",
-  "theme_color": "#000000",
+  "scope": ".",
+  "theme_color": "#0b1120",
   "share_target": {
     "action": "share/share-target.html",
     "method": "POST",
@@ -90,14 +91,14 @@
   "screenshots": [
     {
       "form_factor": "wide",
-      "label": "shadow-claw",
+      "label": "tinyduino-light-meter",
       "sizes": "1920x1052",
       "src": "assets/screenshots/shadow-claw-screenshot-1920x1052.png",
       "type": "image/png"
     },
     {
       "form_factor": "narrow",
-      "label": "shadow-claw",
+      "label": "tinyduino-light-meter",
       "sizes": "731x1045",
       "src": "assets/screenshots/shadow-claw-screenshot-731x1045.png",
       "type": "image/png"
