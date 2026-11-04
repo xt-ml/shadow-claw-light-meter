@@ -1,16 +1,16 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "site": {
-    "title": "ShadowClaw Template",
-    "description": "Published with ShadowClaw",
+    "title": "ShadowClaw Light Meter Workbench",
+    "description": "A TinyDuino, BLE112, and KY-018 relative-light workbench powered by ShadowClaw.",
     "themeColor": "#121212",
     "lang": "en"
   },
   "branding": {
-    "titleText": "ShadowClaw Template",
-    "siteUrl": "https://xt-ml.github.io/shadow-claw-template/",
-    "repoUrl": "https://github.com/xt-ml/shadow-claw-template",
-    "repoLabel": "ShadowClaw Template on GitHub",
+    "titleText": "ShadowClaw Light Meter Workbench",
+    "siteUrl": "https://xt-ml.github.io/shadow-claw-light-meter/",
+    "repoUrl": "https://github.com/xt-ml/shadow-claw-light-meter",
+    "repoLabel": "ShadowClaw Light Meter Workbench on GitHub",
     "faviconPath": "assets/icons/favicon.svg",
     "appleTouchIconPath": "assets/icons/favicon.svg",
     "notFoundPath": "404.html"

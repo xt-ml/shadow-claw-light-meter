@@ -1,10 +1,10 @@
-# AGENTS.md — ShadowClaw Template
+# AGENTS.md — ShadowClaw Light Meter Workbench
 
-> Guidance for AI agents working on a site published from this template.
+> Guidance for AI agents working on the TinyDuino/BLE112/KY-018 light-meter workbench.
 
 ## Project Snapshot
 
-Starter template for static sites built with [ShadowClaw](https://xt-ml.github.io/shadow-claw/) as the build engine. There is no ShadowClaw source in the repo, only content and configuration.
+Static site built with [ShadowClaw](https://xt-ml.github.io/shadow-claw/). The workbench documents a relative-light sensor; it does not provide device firmware or claim calibrated lux measurements.
 
 ## Layout
 
@@ -15,11 +15,14 @@ Starter template for static sites built with [ShadowClaw](https://xt-ml.github.i
 - `pages/resources/routes.json` — maps source files to pretty URLs and drives `sitemap.xml` generation
 - `shadow-claw.config.json` — site, branding, and security settings
 - `.agents/skills/`, `.agents/tools/`, `.agents/scripts/` — agent skills, declarative tools, and helper scripts
+- `.agents/skills/interpret-light-reading/` and `.agents/tools/interpret_light_reading.json` — calibrated relative-reading interpretation
 
 ## Conventions
 
 - Add a page by creating the markdown file and adding a matching entry to `pages/resources/routes.json`; `sitemap.xml` is generated from it at build time. Do not hand-edit a sitemap.
 - Update `llms.txt` when pages are added, renamed, or removed.
+- Treat KY-018 output as raw ADC data; do not describe the relative calibration result as lux.
+- BLE112 GATT UUIDs are firmware-defined. Do not invent a serial service or characteristic.
 - Files in `pages/resources/` override ShadowClaw's defaults for the same root file.
 
 ## Commands

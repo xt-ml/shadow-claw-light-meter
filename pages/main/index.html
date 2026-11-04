@@ -1,31 +1,27 @@
 ---
-title: "ShadowClaw Template"
+title: "ShadowClaw Light Meter Workbench"
 created: "1970-01-01T00:00:00Z"
 updated: "1970-01-01T00:00:00Z"
-slug: "shadow-claw-template"
+slug: "shadowclaw-light-meter-workbench"
 ---
 
 <article>
-  <h2>Welcome to ShadowClaw Template</h2>
+  <h2>ShadowClaw Light Meter Workbench</h2>
   <p>
-    This site is built with
-    <a href="https://github.com/xt-ml/shadow-claw">ShadowClaw</a> and published
-    automatically via Github Actions
+    Build a relative-light workbench using a TinyDuino, BLE112, and KY-018
+    photoresistor. Use ShadowClaw skills to interpret calibrated sensor
+    readings—not to claim uncalibrated lux measurements.
   </p>
   <p>
-    Content lives in pages/main/ as plain markdown files. Pushing to main
-    triggers a build that pre-renders each page into a fast, static site.
+    <a href="/main/workbench/">Open the workbench guide</a> or review
+    <a href="/main/about/">hardware and project notes</a>.
   </p>
 
-  <h2>Pages</h2>
-  <ul>
-    <li><a href="/main/about/">About</a></li>
-  </ul>
   <h2>How it works</h2>
   <ol>
-    <li>Write markdown in pages/main/.</li>
-    <li>Optionally configure pretty-path URLs in pages/routes.json.</li>
-    <li>Push to main — Github Actions builds and deploys automatically.</li>
+    <li>Read the KY-018 ADC output with TinyDuino firmware.</li>
+    <li>Send or copy a sample through the BLE112 integration you configure.</li>
+    <li>Calibrate with dark and bright references, then ask ShadowClaw to interpret it.</li>
   </ol>
 
   <hr
@@ -37,6 +33,6 @@ slug: "shadow-claw-template"
   />
 
   <p style="text-align: center; margin-top: 1rem">
-    ➡️ <a href="/main/about/">Next Page</a>
+    ➡️ <a href="/main/workbench/">Start the workbench</a>
   </p>
 </article>

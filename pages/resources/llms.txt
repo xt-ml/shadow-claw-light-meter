@@ -1,17 +1,17 @@
-# [ShadowClaw Template](https://xt-ml.github.io/shadow-claw-template/)
+# [ShadowClaw Light Meter Workbench](https://xt-ml.github.io/shadow-claw-light-meter/)
 
-> Starter template for publishing a static site with ShadowClaw as the build engine. Content lives in `pages/main/`; the included GitHub Actions workflow builds and deploys to GitHub Pages.
+> Hardware workbench documentation for a TinyDuino, BLE112, and KY-018 photoresistor, with calibrated relative-reading interpretation powered by ShadowClaw. It does not provide device firmware or claim lux accuracy.
 
 ## Docs
 
-- [README](https://xt-ml.github.io/shadow-claw-template/README.md): How the template works and local development
-- [AGENTS.md](https://xt-ml.github.io/shadow-claw-template/AGENTS.md): Conventions for AI agents working on a template site
+- [README](https://xt-ml.github.io/shadow-claw-light-meter/README.md): Project overview and local development
+- [AGENTS.md](https://xt-ml.github.io/shadow-claw-light-meter/AGENTS.md): Conventions for AI agents working on the workbench
 
 ## Pages
 
-- [Home](https://xt-ml.github.io/shadow-claw-template/main)
-- [About](https://xt-ml.github.io/shadow-claw-template/main/about)
-- [Memory](https://xt-ml.github.io/shadow-claw-template/main/memory)
+- [Home](https://xt-ml.github.io/shadow-claw-light-meter/main)
+- [Hardware and project notes](https://xt-ml.github.io/shadow-claw-light-meter/main/about)
+- [Light meter workbench](https://xt-ml.github.io/shadow-claw-light-meter/main/workbench)
 
 ## Related
 
