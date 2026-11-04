@@ -6,6 +6,9 @@
     "/pages/main/~/content/01-about.md": {
       "prettyPath": "/main/about/"
     },
+    "/pages/main/~/content/02-workbench.md": {
+      "prettyPath": "/main/workbench/"
+    },
     "/pages/main/MEMORY.md": {
       "prettyPath": "/main/memory/"
     }

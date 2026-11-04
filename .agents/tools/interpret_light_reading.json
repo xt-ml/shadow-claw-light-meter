@@ -1,0 +1,36 @@
+{
+  "name": "interpret_light_reading",
+  "description": "Interpret a KY-018 ADC reading as a calibrated relative light level. This does not measure lux.",
+  "input_schema": {
+    "type": "object",
+    "properties": {
+      "adc": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Raw analog-to-digital converter reading."
+      },
+      "adcMax": {
+        "type": "integer",
+        "minimum": 1,
+        "default": 1023,
+        "description": "Maximum ADC value for the configured TinyDuino firmware."
+      },
+      "darkReference": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "ADC value recorded in the chosen dark reference condition."
+      },
+      "brightReference": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "ADC value recorded in the chosen bright reference condition."
+      }
+    },
+    "required": ["adc", "darkReference", "brightReference"],
+    "additionalProperties": false
+  },
+  "execution": {
+    "type": "javascript",
+    "code": "const input = typeof data === \"string\" ? JSON.parse(data) : data; const adc = Number(input?.adc); const adcMax = Number(input?.adcMax ?? 1023); const darkReference = Number(input?.darkReference); const brightReference = Number(input?.brightReference); if (![adc, adcMax, darkReference, brightReference].every(Number.isFinite)) throw new Error(\"Provide finite ADC values and both calibration references.\"); if (adcMax <= 0 || adc < 0 || adc > adcMax) throw new Error(\"The reading must be between 0 and adcMax, and adcMax must be positive.\"); if ([darkReference, brightReference].some(value => value < 0 || value > adcMax)) throw new Error(\"Calibration references must be between 0 and adcMax.\"); if (darkReference === brightReference) throw new Error(\"Dark and bright references must be different.\"); const relativePercent = Math.min(100, Math.max(0, ((adc - darkReference) / (brightReference - darkReference)) * 100)); const level = relativePercent < 10 ? \"very dark\" : relativePercent < 35 ? \"dim\" : relativePercent < 70 ? \"moderate\" : \"bright\"; return JSON.stringify({ adc, adcMax, relativePercent: Number(relativePercent.toFixed(1)), level, note: \"Relative position between the supplied calibration references; not a lux measurement.\" });"
+  }
+}
