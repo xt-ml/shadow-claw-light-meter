@@ -80,4 +80,4 @@ Returns the standardized environmental illuminance formatted for smart home auto
 
 ---
 
-⬅️ [Previous: Firmware Guide](/main/firmware-guide/) | ➡️ [Next: Agent Skills](/main/agent-skills/)
+⬅️ [Previous: Firmware Guide](main/firmware-guide/) | ➡️ [Next: Agent Skills](main/agent-skills/)

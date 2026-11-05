@@ -89,4 +89,4 @@ When the BLE112 powers up, it emits an unprompted 16-byte boot event:
 
 ---
 
-⬅️ [Previous: Wiring & Schematic](/main/wiring-schematic/) | ➡️ [Next: KY-018 Calibration & Math](/main/ky018-calibration/)
+⬅️ [Previous: Wiring & Schematic](main/wiring-schematic/) | ➡️ [Next: KY-018 Calibration & Math](main/ky018-calibration/)

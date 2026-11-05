@@ -101,4 +101,4 @@ By default, ShadowClaw renders HTML pages in sandboxed null-origin iframes where
 
 ---
 
-⬅️ [Previous: Namespace Isolation](/main/namespace-isolation/) | ➡️ [Next: Download Center](/main/download-center/)
+⬅️ [Previous: Namespace Isolation](main/namespace-isolation/) | ➡️ [Next: Download Center](main/download-center/)

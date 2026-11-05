@@ -30,3 +30,77 @@ test("Tools: all 13 tools defined in manifest exist on disk and match schema", (
     assert.ok(parsed.execution.code.includes('"tinyduino-results"'));
   }
 });
+
+test("WebMCP adapter: registerNativeWebMcp handles Duplicate tool name InvalidStateError cleanly without unhandled rejection", async () => {
+  if (typeof globalThis.HTMLElement === "undefined") {
+    globalThis.HTMLElement = class {};
+  }
+  if (typeof globalThis.customElements === "undefined") {
+    globalThis.customElements = { define: () => {}, get: () => undefined };
+  }
+
+  const { registerNativeWebMcp } =
+    await import("../.agents/scripts/tinyduino-adapter.js");
+
+  assert.equal(typeof registerNativeWebMcp, "function");
+
+  let unhandledCount = 0;
+  const onUnhandled = () => {
+    unhandledCount++;
+  };
+  process.on("unhandledRejection", onUnhandled);
+
+  try {
+    // 1. Test Promise rejection with InvalidStateError DOMException
+    globalThis.document = {
+      modelContext: {
+        registerTool: () =>
+          Promise.reject(
+            new DOMException("Duplicate tool name", "InvalidStateError"),
+          ),
+      },
+    };
+
+    await registerNativeWebMcp();
+
+    // 2. Test synchronous throw with InvalidStateError DOMException
+    globalThis.document = {
+      modelContext: {
+        registerTool: () => {
+          throw new DOMException("Duplicate tool name", "InvalidStateError");
+        },
+      },
+    };
+
+    await registerNativeWebMcp();
+
+    // 3. Test navigator.modelContext fallback
+    delete globalThis.document;
+    const origNavigator = globalThis.navigator;
+    try {
+      Object.defineProperty(globalThis.navigator, "modelContext", {
+        value: {
+          registerTool: () =>
+            Promise.reject(
+              new DOMException("Duplicate tool name", "InvalidStateError"),
+            ),
+        },
+        configurable: true,
+      });
+
+      await registerNativeWebMcp();
+    } finally {
+      delete globalThis.navigator.modelContext;
+    }
+
+    assert.equal(
+      unhandledCount,
+      0,
+      "Must not trigger unhandled promise rejections on duplicate tools",
+    );
+  } finally {
+    process.off("unhandledRejection", onUnhandled);
+    delete globalThis.document;
+    delete globalThis.navigator;
+  }
+});

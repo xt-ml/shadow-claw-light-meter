@@ -200,7 +200,7 @@
       "name": "tinyduino-adapter",
       "description": "Portable ESM engine logic and tool execution handler for tinyduino-adapter.",
       "url": "../../.agents/scripts/tinyduino-adapter.js",
-      "digest": "sha256:c5355d93b4c12a1227270f5b37c4338b0af54c537fb13a7c1ca5dffd2ba9ea05"
+      "digest": "sha256:13618351ee09f1a11c334fb946e937d459b7b41b49a915f108da17a995cad278"
     },
     {
       "name": "tinyduino-ble",
@@ -212,7 +212,7 @@
       "name": "tinyduino-element",
       "description": "Portable ESM engine logic and tool execution handler for tinyduino-element.",
       "url": "../../.agents/scripts/tinyduino-element.js",
-      "digest": "sha256:81e3c5adf1e9a01276a913d7ed9d6852846c97c4aaccf7ae8761d2e7e7cdc939"
+      "digest": "sha256:2e641521531c4313921a9c9e7399d89886be749a7beedea22e0d85befbc230e7"
     },
     {
       "name": "tinyduino",

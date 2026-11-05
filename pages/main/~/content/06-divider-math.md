@@ -112,4 +112,4 @@ E_lux ≈ 150 × ( 10 kΩ / R_LDR )^1.35
 
 ---
 
-⬅️ [Previous: Field Diagnostics & Architecture Audit](/main/field-diagnostics/) | ➡️ [Next: Wokwi Simulation](/main/wokwi-simulation/)
+⬅️ [Previous: Field Diagnostics & Architecture Audit](main/field-diagnostics/) | ➡️ [Next: Wokwi Simulation](main/wokwi-simulation/)

@@ -531,7 +531,7 @@ export class TinyduinoControlPanel extends HTMLElement {
           <p style="font-size: 0.8rem; color: var(--shadow-claw-text-tertiary, #899393); margin-bottom: 1rem;">
             Web Bluetooth GATT (BGLib 195ae58a… Handle 17/20) with BlueZ 300ms CCCD settling delay.
             <span style="display: block; margin-top: 0.35rem;">
-              <a href="/main/troubleshooting/" target="_blank" style="color: var(--shadow-claw-link, var(--accent)); text-decoration: none;">📖 Linux Bluetooth &amp; chrome://flags Setup Guide ➔</a>
+              <a href="main/troubleshooting/" target="_blank" style="color: var(--shadow-claw-link, var(--accent)); text-decoration: none;">📖 Linux Bluetooth &amp; chrome://flags Setup Guide ➔</a>
             </span>
           </p>
           <div class="toolbar">
@@ -588,7 +588,7 @@ export class TinyduinoControlPanel extends HTMLElement {
             </ol>
           </div>
           <div class="guidance-links">
-            <a href="/main/troubleshooting/" target="_blank" class="guidance-link">📖 Hardware Troubleshooting Guide</a>
+            <a href="main/troubleshooting/" target="_blank" class="guidance-link">📖 Hardware Troubleshooting Guide</a>
             <a href="https://github.com/WebBluetoothCG/web-bluetooth/blob/main/implementation-status.md" target="_blank" class="guidance-link">🌐 Web Bluetooth Linux Support</a>
           </div>
           <div class="guidance-actions">
@@ -653,7 +653,7 @@ export class TinyduinoControlPanel extends HTMLElement {
       const links = [
         {
           label: "Hardware Troubleshooting Guide",
-          href: "/main/troubleshooting/",
+          href: "main/troubleshooting/",
         },
         {
           label: "Web Bluetooth Linux Support Status",

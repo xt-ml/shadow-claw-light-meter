@@ -43,4 +43,4 @@ Direct access to raw source files, firmware sketches, Wokwi hardware simulation 
 
 ---
 
-⬅️ [Previous: Troubleshooting](/main/troubleshooting/) | 🏠 [Back to Portal](/main/) | ☀️ [Open Workbench](/main/tinyduino/)
+⬅️ [Previous: Troubleshooting](main/troubleshooting/) | 🏠 [Back to Portal](main/) | ☀️ [Open Workbench](main/tinyduino/)

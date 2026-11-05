@@ -71,4 +71,4 @@ The workbench bridge ([`.agents/scripts/tinyduino-adapter.js`](file:///.agents/s
 
 ---
 
-⬅️ [Previous: Agent Skills](/main/agent-skills/) | ➡️ [Next: Namespace Isolation](/main/namespace-isolation/)
+⬅️ [Previous: Agent Skills](main/agent-skills/) | ➡️ [Next: Namespace Isolation](main/namespace-isolation/)

@@ -47,7 +47,7 @@ export async function init(container) {
   });
 
   // 2. Native Chrome WebMCP Registration
-  registerNativeWebMcp();
+  await registerNativeWebMcp();
 }
 
 export function cleanup() {
@@ -162,7 +162,7 @@ async function handleToolDispatch(name, params) {
 }
 
 // Native Chrome WebMCP tool registration (document.modelContext)
-function registerNativeWebMcp() {
+export async function registerNativeWebMcp() {
   const modelContext =
     typeof document !== "undefined" && document.modelContext
       ? document.modelContext
@@ -228,12 +228,15 @@ function registerNativeWebMcp() {
 
   for (const tool of tools) {
     try {
-      modelContext.registerTool(tool);
+      const res = modelContext.registerTool(tool);
+      if (res && typeof res.catch === "function") {
+        await res.catch(() => {});
+      }
     } catch (_) {}
   }
 }
 
 // Auto-initialize when loaded in browser window
 if (typeof window !== "undefined") {
-  init(document.body);
+  init(document.body).catch(() => {});
 }

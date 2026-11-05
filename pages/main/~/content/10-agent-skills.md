@@ -53,4 +53,4 @@ All skills conform to the **Agent Skills** open specification, are discoverable 
 
 ---
 
-⬅️ [Previous: WebMCP Sensory Tools](/main/webmcp-tools/) | ➡️ [Next: Interactive Workbench & Custom Elements](/main/workbench-ui/)
+⬅️ [Previous: WebMCP Sensory Tools](main/webmcp-tools/) | ➡️ [Next: Interactive Workbench & Custom Elements](main/workbench-ui/)

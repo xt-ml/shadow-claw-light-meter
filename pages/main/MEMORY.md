@@ -113,21 +113,21 @@ Directly invocable skills located under [`.agents/skills/`](.agents/skills/):
 
 Links to complete documentation chapters:
 
-- **Interactive Workbench**: [`/main/tinyduino/`](/main/tinyduino/) — Live Web Bluetooth controls, gauge, and waveform
-- **01. Hardware Architecture**: [`/main/hardware-architecture/`](/main/hardware-architecture/) — 4-layer stack breakdown & pinouts
-- **02. Wiring Schematic**: [`/main/wiring-schematic/`](/main/wiring-schematic/) — KY-018 pin routing & 3.3V logic rail safety
-- **03. BLE112 BGAPI Protocol**: [`/main/ble112-bgapi/`](/main/ble112-bgapi/) — GATT UUIDs, packet framing, and BlueZ delay
-- **04. KY-018 Calibration**: [`/main/ky018-calibration/`](/main/ky018-calibration/) — Photoconductive power-law curve & lux formulas
-- **05. Field Diagnostics**: [`/main/field-diagnostics/`](/main/field-diagnostics/) — Hardware bring-up field log & boot packet decoding
-- **06. Divider Math & Proof**: [`/main/divider-math/`](/main/divider-math/) — Electrical circuit proof demonstrating High A0 = Bright
-- **07. Wokwi Simulation**: [`/main/wokwi-simulation/`](/main/wokwi-simulation/) — Complete in-browser breadboard simulation
-- **08. Firmware Guide (shadow-claw-light-meter.ino)**: [`/main/firmware-guide/`](/main/firmware-guide/) — 4x oversampling ADC acquisition & BGLib
-- **09. WebMCP Tools**: [`/main/webmcp-tools/`](/main/webmcp-tools/) — 13 sensory tools reference & schemas
-- **10. Agent Skills**: [`/main/agent-skills/`](/main/agent-skills/) — Autonomous agent skills catalog
-- **11. Workbench UI Architecture**: [`/main/workbench-ui/`](/main/workbench-ui/) — Custom element `<tinyduino-control-panel>`, gauge, and waveform
-- **12. Namespace Isolation**: [`/main/namespace-isolation/`](/main/namespace-isolation/) — Strict scoped identifier contract
-- **13. Troubleshooting**: [`/main/troubleshooting/`](/main/troubleshooting/) — Hardware, BlueZ, and browser troubleshooting
-- **14. Download Center**: [`/main/download-center/`](/main/download-center/) — Sketches, simulation diagram, and JavaScript tools
+- **Interactive Workbench**: [`/main/tinyduino/`](main/tinyduino/) — Live Web Bluetooth controls, gauge, and waveform
+- **01. Hardware Architecture**: [`/main/hardware-architecture/`](main/hardware-architecture/) — 4-layer stack breakdown & pinouts
+- **02. Wiring Schematic**: [`/main/wiring-schematic/`](main/wiring-schematic/) — KY-018 pin routing & 3.3V logic rail safety
+- **03. BLE112 BGAPI Protocol**: [`/main/ble112-bgapi/`](main/ble112-bgapi/) — GATT UUIDs, packet framing, and BlueZ delay
+- **04. KY-018 Calibration**: [`/main/ky018-calibration/`](main/ky018-calibration/) — Photoconductive power-law curve & lux formulas
+- **05. Field Diagnostics**: [`/main/field-diagnostics/`](main/field-diagnostics/) — Hardware bring-up field log & boot packet decoding
+- **06. Divider Math & Proof**: [`/main/divider-math/`](main/divider-math/) — Electrical circuit proof demonstrating High A0 = Bright
+- **07. Wokwi Simulation**: [`/main/wokwi-simulation/`](main/wokwi-simulation/) — Complete in-browser breadboard simulation
+- **08. Firmware Guide (shadow-claw-light-meter.ino)**: [`/main/firmware-guide/`](main/firmware-guide/) — 4x oversampling ADC acquisition & BGLib
+- **09. WebMCP Tools**: [`/main/webmcp-tools/`](main/webmcp-tools/) — 13 sensory tools reference & schemas
+- **10. Agent Skills**: [`/main/agent-skills/`](main/agent-skills/) — Autonomous agent skills catalog
+- **11. Workbench UI Architecture**: [`/main/workbench-ui/`](main/workbench-ui/) — Custom element `<tinyduino-control-panel>`, gauge, and waveform
+- **12. Namespace Isolation**: [`/main/namespace-isolation/`](main/namespace-isolation/) — Strict scoped identifier contract
+- **13. Troubleshooting**: [`/main/troubleshooting/`](main/troubleshooting/) — Hardware, BlueZ, and browser troubleshooting
+- **14. Download Center**: [`/main/download-center/`](main/download-center/) — Sketches, simulation diagram, and JavaScript tools
 
 ---
 

@@ -62,4 +62,4 @@ The KY-018 module connects to the **[TinyShield Proto Board (`ASD2009 Rev 1`)](h
 
 ---
 
-⬅️ [Previous: Hardware Architecture](/main/hardware-architecture/) | ➡️ [Next: BLE112 BGAPI Protocol](/main/ble112-bgapi/)
+⬅️ [Previous: Hardware Architecture](main/hardware-architecture/) | ➡️ [Next: BLE112 BGAPI Protocol](main/ble112-bgapi/)

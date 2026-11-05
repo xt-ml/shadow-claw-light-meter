@@ -102,4 +102,4 @@ The workbench supports two calibration polarities:
 
 ---
 
-⬅️ [Previous: BLE112 BGAPI Protocol](/main/ble112-bgapi/) | ➡️ [Next: Field Diagnostics & Architecture Audit](/main/field-diagnostics/)
+⬅️ [Previous: BLE112 BGAPI Protocol](main/ble112-bgapi/) | ➡️ [Next: Field Diagnostics & Architecture Audit](main/field-diagnostics/)

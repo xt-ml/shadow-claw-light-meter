@@ -74,4 +74,4 @@ When connecting Chrome's Web Serial monitor to `/dev/ttyUSB0`, the FTDI chip tog
 
 ---
 
-⬅️ [Previous: KY-018 Calibration](/main/ky018-calibration/) | ➡️ [Next: Voltage Divider Derivation & Math Proof](/main/divider-math/)
+⬅️ [Previous: KY-018 Calibration](main/ky018-calibration/) | ➡️ [Next: Voltage Divider Derivation & Math Proof](main/divider-math/)

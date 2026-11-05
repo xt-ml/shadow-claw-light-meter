@@ -78,4 +78,4 @@ npm run compile:firmware
 
 ---
 
-⬅️ [Previous: Wokwi Simulation](/main/wokwi-simulation/) | ➡️ [Next: WebMCP Sensory Tools](/main/webmcp-tools/)
+⬅️ [Previous: Wokwi Simulation](main/wokwi-simulation/) | ➡️ [Next: WebMCP Sensory Tools](main/webmcp-tools/)

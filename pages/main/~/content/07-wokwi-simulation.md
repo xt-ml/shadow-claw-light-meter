@@ -109,4 +109,4 @@ _(Note: If creating a brand new project from scratch, add the three BGLib files 
 
 ---
 
-⬅️ [Previous: Voltage Divider Derivation & Math Proof](/main/divider-math/) | ➡️ [Next: Firmware Guide](/main/firmware-guide/)
+⬅️ [Previous: Voltage Divider Derivation & Math Proof](main/divider-math/) | ➡️ [Next: Firmware Guide](main/firmware-guide/)

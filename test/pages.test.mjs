@@ -344,3 +344,67 @@ test("Markdown typography: no unrendered LaTeX or MathML tags across documentati
     "MEMORY.md must list primary agent tools",
   );
 });
+
+test("Internal links: documentation pages and workbench must use base-path compatible relative paths instead of domain-root '/main/'", () => {
+  const contentDir = resolve(ROOT, "pages/main/~/content");
+  const markdownFiles = [
+    "01-hardware-architecture.md",
+    "02-wiring-schematic.md",
+    "03-ble112-bgapi.md",
+    "04-ky018-calibration.md",
+    "05-field-diagnostics.md",
+    "06-divider-math.md",
+    "07-wokwi-simulation.md",
+    "08-firmware-guide.md",
+    "09-webmcp-tools.md",
+    "10-agent-skills.md",
+    "11-workbench-ui.md",
+    "12-namespace-isolation.md",
+    "13-troubleshooting.md",
+    "14-download-center.md",
+  ];
+
+  for (const file of markdownFiles) {
+    const fullPath = resolve(contentDir, file);
+    const content = readFileSync(fullPath, "utf8");
+    assert.ok(
+      !content.includes("](/main/"),
+      `${file} must not contain domain-root '](/main/' links which 404 on GitHub Pages; use relative '](main/' or '](../'`,
+    );
+    assert.ok(
+      !content.includes('href="/main/'),
+      `${file} must not contain 'href="/main/' links which 404 on GitHub Pages`,
+    );
+  }
+
+  const indexHtml = readFileSync(
+    resolve(ROOT, "pages/main/index.html"),
+    "utf8",
+  );
+  assert.ok(
+    !indexHtml.includes('href="/main/'),
+    "pages/main/index.html must not contain domain-root 'href=\"/main/' links; use 'href=\"main/' to support base-path",
+  );
+
+  const tinyduinoHtml = readFileSync(
+    resolve(ROOT, "pages/main/tinyduino.html"),
+    "utf8",
+  );
+  assert.ok(
+    !tinyduinoHtml.includes('href="/main/'),
+    "pages/main/tinyduino.html must not contain domain-root 'href=\"/main/' links; use 'href=\"main/' to support base-path",
+  );
+
+  const elementJs = readFileSync(
+    resolve(ROOT, ".agents/scripts/tinyduino-element.js"),
+    "utf8",
+  );
+  assert.ok(
+    !elementJs.includes('href="/main/'),
+    "tinyduino-element.js must not contain hardcoded 'href=\"/main/' links; use 'href=\"main/'",
+  );
+  assert.ok(
+    !elementJs.includes('href: "/main/'),
+    "tinyduino-element.js dialog links must not use domain-root 'href: \"/main/'",
+  );
+});

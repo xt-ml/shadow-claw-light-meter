@@ -68,4 +68,4 @@ graph TD
 
 ---
 
-⬅️ [Back to Portal](/main/) | ➡️ [Next: Wiring & Schematic](/main/wiring-schematic/)
+⬅️ [Back to Portal](main/) | ➡️ [Next: Wiring & Schematic](main/wiring-schematic/)
