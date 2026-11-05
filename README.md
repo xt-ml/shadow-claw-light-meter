@@ -1,5 +1,7 @@
 # ☀️ [TinyDuino LightMeter](https://xt-ml.github.io/shadow-claw-light-meter/) ([`shadow-claw-light-meter`](https://xt-ml.github.io/shadow-claw-light-meter/))
 
+[![Ask DeepWiki](https://img.shields.io/badge/DeepWiki-xt--ml%2Fshadow--claw--light--meter-blue.svg)](https://deepwiki.com/xt-ml/shadow-claw-light-meter)
+
 > Hardware light meter workbench, Web Bluetooth / BGAPI telemetry engine, declarative WebMCP sensory tools, and autonomous agent skills for **TinyDuino (ASM2001)** + **Bluegiga BLE112 (ASD2112)** + **KY-018 Photoresistor** on **Analog Pin A0**, published with [ShadowClaw](https://github.com/xt-ml/shadow-claw).
 
 ## 🚀 Quick Start (Just Get Going)
