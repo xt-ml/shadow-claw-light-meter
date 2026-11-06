@@ -6,10 +6,10 @@
 
 function makeBroadcastCode(toolName) {
   return `
-let input = {};
+let toolParams = {};
 try {
   const raw = typeof $PIPE_DATA !== "undefined" && $PIPE_DATA ? $PIPE_DATA : (typeof data !== "undefined" ? data : "{}");
-  input = typeof raw === "string" ? JSON.parse(raw) : (raw || {});
+  toolParams = typeof raw === "string" ? JSON.parse(raw) : (raw || {});
 } catch (_) {}
 
 const cmdCh = new BroadcastChannel("tinyduino-commands");
@@ -36,7 +36,7 @@ const reply = new Promise((resolve, reject) => {
     }
   };
   resCh.addEventListener("message", handler);
-  cmdCh.postMessage({ type: "${toolName}", requestId: reqId, params: input || {} });
+  cmdCh.postMessage({ type: "${toolName}", requestId: reqId, params: toolParams || {} });
 });
 
 return await Promise.race([reply, timeout]);

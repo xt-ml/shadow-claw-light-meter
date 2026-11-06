@@ -24,6 +24,18 @@ test("Tools: all 13 tools defined in manifest exist on disk and match schema", (
     assert.equal(typeof parsed.annotations.readOnlyHint, "boolean");
     assert.equal(typeof parsed.annotations.consequentialHint, "boolean");
     assert.equal(parsed.execution.type, "javascript");
+    assert.doesNotMatch(
+      parsed.execution.code,
+      /\b(?:const|let|var)\s+input\b/,
+      `${tool.name} must not declare ShadowClaw's injected input`,
+    );
+    assert.doesNotThrow(
+      () =>
+        new Function(
+          `return async (data, $PIPE_DATA) => { let input; ${parsed.execution.code}\n};`,
+        ),
+      `${tool.name} must compile with the older ShadowClaw input binding`,
+    );
 
     // Must use literal channel strings
     assert.ok(parsed.execution.code.includes('"tinyduino-commands"'));
