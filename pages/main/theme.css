@@ -845,3 +845,177 @@ a.portal-cta:hover span,
   color: var(--shadow-claw-link-hover);
   gap: 0.55rem;
 }
+
+/* ==========================================================================
+   TinyDuino Workbench (BEM, Mobile-First & Container Queries)
+   ========================================================================== */
+
+.tinyduino-workbench {
+  container-type: inline-size;
+  container-name: tinyduino-workbench;
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.tinyduino-workbench__header {
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--shadow-claw-border-color);
+  padding-bottom: 1rem;
+  width: 100%;
+}
+
+.tinyduino-workbench__title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.6rem;
+  font-family: var(--lightmeter-font-display, var(--shadow-claw-font-sans));
+  font-size: clamp(1.3rem, 4vw, 1.75rem);
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  color: var(--shadow-claw-text-primary);
+  width: 100%;
+  line-height: 1.3;
+}
+
+.tinyduino-workbench__title-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tinyduino-workbench__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(
+    --md-sys-color-primary-container,
+    var(--shadow-claw-accent-secondary, #004f54)
+  );
+  color: var(
+    --md-sys-color-on-primary-container,
+    var(--shadow-claw-accent-hover, #9df0f8)
+  );
+  border: 1px solid var(--shadow-claw-accent-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--shadow-claw-radius-pill, 9999px);
+  text-transform: uppercase;
+  box-shadow: 0 0 12px rgba(128, 212, 219, 0.25);
+  line-height: 1.2;
+}
+
+.tinyduino-workbench__description {
+  color: var(--shadow-claw-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.tinyduino-workbench__link {
+  color: var(--shadow-claw-link);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.tinyduino-workbench__link:hover {
+  color: var(--shadow-claw-link-hover);
+  text-decoration: underline;
+}
+
+.tinyduino-workbench__link:focus-visible {
+  outline: 2px solid var(--shadow-claw-accent-primary);
+  outline-offset: 2px;
+}
+
+.tinyduino-workbench__panel {
+  display: block;
+  width: 100%;
+}
+
+.tinyduino-workbench__guides {
+  margin-top: 2rem;
+  padding: 1.25rem;
+  background: var(--shadow-claw-bg-secondary);
+  border: 1px solid var(--shadow-claw-border-color);
+  border-radius: var(--shadow-claw-radius-m);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.tinyduino-workbench__guides-title {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--shadow-claw-text-primary);
+}
+
+.tinyduino-workbench__guides-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding-left: 1.25rem;
+  margin: 0;
+  list-style: disc;
+}
+
+.tinyduino-workbench__guides-item {
+  color: var(--shadow-claw-text-secondary);
+  line-height: 1.5;
+}
+
+.tinyduino-workbench__guides-link {
+  color: var(--shadow-claw-link);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 500;
+  display: inline-block;
+  min-block-size: 24px;
+  transition: color 0.15s ease;
+}
+
+.tinyduino-workbench__guides-link:hover {
+  color: var(--shadow-claw-link-hover);
+  text-decoration: underline;
+}
+
+.tinyduino-workbench__guides-link:focus-visible {
+  outline: 2px solid var(--shadow-claw-accent-primary);
+  outline-offset: 2px;
+}
+
+/* Progressive enhancement with Container Queries */
+@container tinyduino-workbench (min-width: 540px) {
+  .tinyduino-workbench__title {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .tinyduino-workbench__guides-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+/* Media query fallback for browsers lacking Container Query support */
+@media (min-width: 540px) {
+  @supports not (container-type: inline-size) {
+    .tinyduino-workbench__title {
+      flex-direction: row;
+      align-items: center;
+    }
+
+    .tinyduino-workbench__guides-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 0.75rem;
+    }
+  }
+}

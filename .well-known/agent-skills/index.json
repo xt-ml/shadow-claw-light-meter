@@ -212,7 +212,7 @@
       "name": "tinyduino-element",
       "description": "Portable ESM engine logic and tool execution handler for tinyduino-element.",
       "url": "../../.agents/scripts/tinyduino-element.js",
-      "digest": "sha256:2e641521531c4313921a9c9e7399d89886be749a7beedea22e0d85befbc230e7"
+      "digest": "sha256:62274d7e45867c2d6c85db2de0cfb01d4eefafd958e3da1956e6b9ad66c260d1"
     },
     {
       "name": "tinyduino",
