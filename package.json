@@ -16,6 +16,7 @@
     "start": "npx shadow-claw dev --open -y",
     "dev": "npx shadow-claw dev --open -y",
     "test": "node --test test/*.test.mjs",
+    "format": "npx -y prettier -w .",
     "check": "npm run check:compat && npm run check:tools",
     "check:compat": "node bin/check-namespace.mjs",
     "check:namespace": "node bin/check-namespace.mjs",
@@ -34,5 +35,8 @@
     "mcp",
     "webmcp"
   ],
-  "license": "AGPL-3.0"
+  "license": "AGPL-3.0",
+  "devDependencies": {
+    "prettier": "^3.9.10"
+  }
 }

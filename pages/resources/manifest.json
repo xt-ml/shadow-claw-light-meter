@@ -1,5 +1,5 @@
 {
-  "background_color": "#0b1120",
+  "background_color": "#0e1415",
   "description": "Hardware light meter workbench and agentic sensory skills for TinyDuino, BLE112, and KY-018 photoresistor.",
   "display": "standalone",
   "id": "tinyduino-light-meter",
@@ -7,7 +7,7 @@
   "short_name": "LightMeter",
   "start_url": ".",
   "scope": ".",
-  "theme_color": "#0b1120",
+  "theme_color": "#0e1415",
   "share_target": {
     "action": "share/share-target.html",
     "method": "POST",
@@ -33,6 +33,12 @@
     }
   },
   "icons": [
+    {
+      "purpose": "any",
+      "sizes": "any",
+      "src": "assets/icons/favicon.svg",
+      "type": "image/svg+xml"
+    },
     {
       "purpose": "any",
       "sizes": "48x48",
@@ -65,6 +71,12 @@
     },
     {
       "purpose": "any",
+      "sizes": "180x180",
+      "src": "assets/icons/180.png",
+      "type": "image/png"
+    },
+    {
+      "purpose": "any",
       "sizes": "192x192",
       "src": "assets/icons/192.png",
       "type": "image/png"
@@ -91,16 +103,9 @@
   "screenshots": [
     {
       "form_factor": "wide",
-      "label": "tinyduino-light-meter",
-      "sizes": "1920x1052",
-      "src": "assets/screenshots/shadow-claw-screenshot-1920x1052.png",
-      "type": "image/png"
-    },
-    {
-      "form_factor": "narrow",
-      "label": "tinyduino-light-meter",
-      "sizes": "731x1045",
-      "src": "assets/screenshots/shadow-claw-screenshot-731x1045.png",
+      "label": "TinyDuino LightMeter Sensory Workbench",
+      "sizes": "1071x768",
+      "src": "assets/screenshots/tinyduino-lightmeter-workbench-1071x768.png",
       "type": "image/png"
     }
   ]
