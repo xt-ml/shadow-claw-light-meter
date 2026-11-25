@@ -43,13 +43,10 @@ test("Tools: all 13 tools defined in manifest exist on disk and match schema", (
   }
 });
 
-test("WebMCP adapter: registerNativeWebMcp handles Duplicate tool name InvalidStateError cleanly without unhandled rejection", async () => {
-  if (typeof globalThis.HTMLElement === "undefined") {
-    globalThis.HTMLElement = class {};
-  }
-  if (typeof globalThis.customElements === "undefined") {
-    globalThis.customElements = { define: () => {}, get: () => undefined };
-  }
+test("WebMCP adapter: shadow-claw-light-meter-control-panel imports safely in Node and registerNativeWebMcp handles Duplicate tool name InvalidStateError", async () => {
+  const { ShadowClawLightMeterControlPanel } =
+    await import("../.agents/scripts/shadow-claw-light-meter-control-panel.js");
+  assert.equal(typeof ShadowClawLightMeterControlPanel, "function");
 
   const { registerNativeWebMcp } =
     await import("../.agents/scripts/tinyduino-adapter.js");

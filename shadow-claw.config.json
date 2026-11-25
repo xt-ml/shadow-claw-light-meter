@@ -39,17 +39,17 @@
   },
   "customElements": {
     "allowedElements": [
-      "tinyduino-control-panel",
-      "tinyduino-lightmeter",
-      "tinyduino-sensor-card",
-      "tinyduino-packet-inspector"
+      "shadow-claw-light-meter-control-panel",
+      "shadow-claw-light-meter-lightmeter",
+      "shadow-claw-light-meter-sensor-card",
+      "shadow-claw-light-meter-packet-inspector"
     ],
     "allowedDomains": ["localhost", "127.0.0.1"],
     "scripts": [
       {
-        "id": "tinyduino-element",
-        "name": "tinyduino-control-panel",
-        "src": ".agents/scripts/tinyduino-element.js",
+        "id": "shadow-claw-light-meter-control-panel",
+        "name": "shadow-claw-light-meter-control-panel",
+        "src": ".agents/scripts/shadow-claw-light-meter-control-panel.js",
         "global": true,
         "autoload": true,
         "hasInit": false

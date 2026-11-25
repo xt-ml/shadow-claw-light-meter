@@ -197,22 +197,22 @@
   ],
   "scripts": [
     {
+      "name": "shadow-claw-light-meter-control-panel",
+      "description": "Portable ESM engine logic and tool execution handler for shadow-claw-light-meter-control-panel.",
+      "url": "../../.agents/scripts/shadow-claw-light-meter-control-panel.js",
+      "digest": "sha256:a5b03428bfbfb9179fd407acaa9c111e8c48bf9d4a5420f29425320a15b21b30"
+    },
+    {
       "name": "tinyduino-adapter",
       "description": "Portable ESM engine logic and tool execution handler for tinyduino-adapter.",
       "url": "../../.agents/scripts/tinyduino-adapter.js",
-      "digest": "sha256:13618351ee09f1a11c334fb946e937d459b7b41b49a915f108da17a995cad278"
+      "digest": "sha256:2e30dc4280852d4bf0176e49b663656aaff41a540eb1028c9d9c7786e862c4c1"
     },
     {
       "name": "tinyduino-ble",
       "description": "Portable ESM engine logic and tool execution handler for tinyduino-ble.",
       "url": "../../.agents/scripts/tinyduino-ble.js",
       "digest": "sha256:be06dd5a7042e8168912f7f7c1040b34c384116c5ac2d2bdc4eb0e2391deb4ac"
-    },
-    {
-      "name": "tinyduino-element",
-      "description": "Portable ESM engine logic and tool execution handler for tinyduino-element.",
-      "url": "../../.agents/scripts/tinyduino-element.js",
-      "digest": "sha256:62274d7e45867c2d6c85db2de0cfb01d4eefafd958e3da1956e6b9ad66c260d1"
     },
     {
       "name": "tinyduino",
@@ -238,9 +238,9 @@
       "../../.agents/tools/tinyduino_stream_light.json"
     ],
     "scripts": [
+      "../../.agents/scripts/shadow-claw-light-meter-control-panel.js",
       "../../.agents/scripts/tinyduino-adapter.js",
       "../../.agents/scripts/tinyduino-ble.js",
-      "../../.agents/scripts/tinyduino-element.js",
       "../../.agents/scripts/tinyduino.js"
     ]
   }

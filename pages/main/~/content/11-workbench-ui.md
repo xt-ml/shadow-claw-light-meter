@@ -7,12 +7,12 @@ slug: "workbench-ui"
 
 ## Interactive Workbench & Custom Elements
 
-The TinyDuino LightMeter features an interactive workbench surface rendered by custom Web Components declared in [`.agents/scripts/tinyduino-element.js`](file:///.agents/scripts/tinyduino-element.js). The workbench connects physical hardware telemetry, Web Bluetooth GATT, and AI agent sensory tools directly in the browser.
+The TinyDuino LightMeter features an interactive workbench surface rendered by custom Web Components declared in [`.agents/scripts/shadow-claw-light-meter-control-panel.js`](file:///.agents/scripts/shadow-claw-light-meter-control-panel.js). The workbench connects physical hardware telemetry, Web Bluetooth GATT, and AI agent sensory tools directly in the browser.
 
 ```mermaid
 graph TD
   subgraph Interactive UI
-    CP["&lt;tinyduino-control-panel&gt;"]
+    CP["&lt;shadow-claw-light-meter-control-panel&gt;"]
     GAUGE["SVG Illuminance Gauge & ADC Dial"]
     WAVE["Real-Time Waveform Chart"]
     CTRL["Transport Controls & LED Toggles"]
@@ -33,9 +33,9 @@ graph TD
 
 ---
 
-### 1. Component Architecture (`<tinyduino-control-panel>`)
+### 1. Component Architecture (`<shadow-claw-light-meter-control-panel>`)
 
-The primary workbench element is `<tinyduino-control-panel>`, registered as a standard autonomous custom element. It operates across multiple display contexts:
+The primary workbench element is `<shadow-claw-light-meter-control-panel>`, registered as a standard autonomous custom element. It operates across multiple display contexts:
 
 1. **Dedicated Workbench Page**: Rendered directly in `pages/main/tinyduino.html` with un-sandboxed Web Bluetooth and Web Serial access (`iframe: false`).
 2. **Inline Agent Card**: Dynamically injected into AI chat conversations via the `tinyduino_render_surface` WebMCP tool.
@@ -66,7 +66,7 @@ The workbench supports three complementary runtime modes:
 The workbench bridge ([`.agents/scripts/tinyduino-adapter.js`](file:///.agents/scripts/tinyduino-adapter.js)) registers tools directly with the browser's Model Context:
 
 - When an AI agent executes `tinyduino_set_led({ state: "ON" })`, the command dispatches across `tinyduino-commands`.
-- The active transport writes to GATT Handle 17, and `<tinyduino-control-panel>` immediately updates its LED indicators.
+- The active transport writes to GATT Handle 17, and `<shadow-claw-light-meter-control-panel>` immediately updates its LED indicators.
 - Telemetry streams emitted by `tinyduino_stream_light` publish results across `tinyduino-results` to keep the waveform and chat agent in continuous sync.
 
 ---

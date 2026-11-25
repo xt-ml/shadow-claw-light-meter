@@ -1,13 +1,17 @@
 /**
- * .agents/scripts/tinyduino-element.js
+ * .agents/scripts/shadow-claw-light-meter-control-panel.js
  *
  * Custom Elements for TinyDuino LightMeter workbench:
- * - <tinyduino-control-panel>
- * - <tinyduino-lightmeter>
- * - <tinyduino-sensor-card>
- * - <tinyduino-packet-inspector>
+ * - <shadow-claw-light-meter-control-panel>
+ * - <shadow-claw-light-meter-lightmeter>
+ * - <shadow-claw-light-meter-sensor-card>
+ * - <shadow-claw-light-meter-packet-inspector>
  */
 
+import {
+  BaseElement,
+  defineElement,
+} from "shadow-claw/components/shadow-claw-element";
 import { tinyduino } from "./tinyduino-ble.js";
 
 const STYLES = `
@@ -716,7 +720,7 @@ dialog.guidance-dialog::backdrop {
 }
 `;
 
-export class TinyduinoControlPanel extends HTMLElement {
+export class ShadowClawLightMeterControlPanel extends BaseElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -1218,6 +1222,7 @@ export class TinyduinoControlPanel extends HTMLElement {
   }
 }
 
-if (!customElements.get("tinyduino-control-panel")) {
-  customElements.define("tinyduino-control-panel", TinyduinoControlPanel);
-}
+defineElement(
+  "shadow-claw-light-meter-control-panel",
+  ShadowClawLightMeterControlPanel,
+);

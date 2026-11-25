@@ -57,22 +57,22 @@ Accessible at [`pages/main/tinyduino.html`](pages/main/tinyduino.html) (`/main/t
 
 ## 📚 Documentation & Hardware Guides
 
-| Chapter                       | Pretty Path                                                    | Description                                                                            |
-| :---------------------------- | :------------------------------------------------------------- | :------------------------------------------------------------------------------------- |
-| **01. Hardware Architecture** | [`/main/hardware-architecture/`](/main/hardware-architecture/) | 4-layer stack diagram, pinouts, and power distribution                                 |
-| **02. Wiring Schematic**      | [`/main/wiring-schematic/`](/main/wiring-schematic/)           | KY-018 photoresistor wiring, 10k pull-down divider, and 3.3V rail safety               |
-| **03. BLE112 BGAPI Protocol** | [`/main/ble112-bgapi/`](/main/ble112-bgapi/)                   | GATT UUIDs, Handle 17/20, BGAPI framing, and BlueZ 300ms CCCD settling delay           |
-| **04. KY-018 Calibration**    | [`/main/ky018-calibration/`](/main/ky018-calibration/)         | Photoconductive power-law curve, ADC-to-lux math, and polarity modes                   |
-| **05. Field Diagnostics**     | [`/main/field-diagnostics/`](/main/field-diagnostics/)         | Field report: hardware verification, boot packet decoding, and break handling          |
-| **06. Divider Math & MathML** | [`/main/divider-math/`](/main/divider-math/)                   | Voltage divider proof with native MathML resolving light/dark inversion                |
-| **07. Wokwi Simulation**      | [`/main/wokwi-simulation/`](/main/wokwi-simulation/)           | In-browser breadboard simulation with custom C-chip BLE112 emulation                   |
-| **08. Firmware Guide**        | [`/main/firmware-guide/`](/main/firmware-guide/)               | `shadow-claw-light-meter.ino` 4x oversampled ADC, BGLib submodule, and `bin/upload.sh` |
-| **09. WebMCP Sensory Tools**  | [`/main/webmcp-tools/`](/main/webmcp-tools/)                   | 13 declarative WebMCP tools with schemas, annotations, and DevTools usage              |
-| **10. Agent Skills**          | [`/main/agent-skills/`](/main/agent-skills/)                   | Autonomous agent skills (/lightmeter, /nightlight, /tinyduino-doctor, etc.)            |
-| **11. Workbench UI**          | [`/main/workbench-ui/`](/main/workbench-ui/)                   | Interactive `<tinyduino-control-panel>`, real-time SVG gauge, and waveform chart       |
-| **12. Namespace Isolation**   | [`/main/namespace-isolation/`](/main/namespace-isolation/)     | Strict namespace isolation and collision prevention contract                           |
-| **13. Troubleshooting**       | [`/main/troubleshooting/`](/main/troubleshooting/)             | Diagnosing BlueZ GATT Error 133, Web Serial breaks, and DevTools WebMCP                |
-| **14. Download Center**       | [`/main/download-center/`](/main/download-center/)             | Direct downloads for sketches, Wokwi diagram, BLE112 C chip, and scripts               |
+| Chapter                       | Pretty Path                                                    | Description                                                                                    |
+| :---------------------------- | :------------------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
+| **01. Hardware Architecture** | [`/main/hardware-architecture/`](/main/hardware-architecture/) | 4-layer stack diagram, pinouts, and power distribution                                         |
+| **02. Wiring Schematic**      | [`/main/wiring-schematic/`](/main/wiring-schematic/)           | KY-018 photoresistor wiring, 10k pull-down divider, and 3.3V rail safety                       |
+| **03. BLE112 BGAPI Protocol** | [`/main/ble112-bgapi/`](/main/ble112-bgapi/)                   | GATT UUIDs, Handle 17/20, BGAPI framing, and BlueZ 300ms CCCD settling delay                   |
+| **04. KY-018 Calibration**    | [`/main/ky018-calibration/`](/main/ky018-calibration/)         | Photoconductive power-law curve, ADC-to-lux math, and polarity modes                           |
+| **05. Field Diagnostics**     | [`/main/field-diagnostics/`](/main/field-diagnostics/)         | Field report: hardware verification, boot packet decoding, and break handling                  |
+| **06. Divider Math & MathML** | [`/main/divider-math/`](/main/divider-math/)                   | Voltage divider proof with native MathML resolving light/dark inversion                        |
+| **07. Wokwi Simulation**      | [`/main/wokwi-simulation/`](/main/wokwi-simulation/)           | In-browser breadboard simulation with custom C-chip BLE112 emulation                           |
+| **08. Firmware Guide**        | [`/main/firmware-guide/`](/main/firmware-guide/)               | `shadow-claw-light-meter.ino` 4x oversampled ADC, BGLib submodule, and `bin/upload.sh`         |
+| **09. WebMCP Sensory Tools**  | [`/main/webmcp-tools/`](/main/webmcp-tools/)                   | 13 declarative WebMCP tools with schemas, annotations, and DevTools usage                      |
+| **10. Agent Skills**          | [`/main/agent-skills/`](/main/agent-skills/)                   | Autonomous agent skills (/lightmeter, /nightlight, /tinyduino-doctor, etc.)                    |
+| **11. Workbench UI**          | [`/main/workbench-ui/`](/main/workbench-ui/)                   | Interactive `<shadow-claw-light-meter-control-panel>`, real-time SVG gauge, and waveform chart |
+| **12. Namespace Isolation**   | [`/main/namespace-isolation/`](/main/namespace-isolation/)     | Strict namespace isolation and collision prevention contract                                   |
+| **13. Troubleshooting**       | [`/main/troubleshooting/`](/main/troubleshooting/)             | Diagnosing BlueZ GATT Error 133, Web Serial breaks, and DevTools WebMCP                        |
+| **14. Download Center**       | [`/main/download-center/`](/main/download-center/)             | Direct downloads for sketches, Wokwi diagram, BLE112 C chip, and scripts                       |
 
 ---
 
@@ -93,7 +93,7 @@ Defined in [`bin/tool-manifest.mjs`](bin/tool-manifest.mjs) and generated into [
 | `tinyduino_disconnect`            |  Mutating   | Closes GATT connection or terminates simulation.                                                            |
 | `tinyduino_get_connection_status` |  Read-Only  | Returns connection mode (`connected`, `simulated`, `disconnected`) and packet stats.                        |
 | `tinyduino_read_telemetry`        |  Read-Only  | Structured snapshot of raw ADC, signal voltage, lux, and category.                                          |
-| `tinyduino_render_surface`        |  Read-Only  | Embeds the interactive `<tinyduino-control-panel>` component into chat.                                     |
+| `tinyduino_render_surface`        |  Read-Only  | Embeds the interactive `<shadow-claw-light-meter-control-panel>` component into chat.                       |
 | `tinyduino_ambient_level`         |  Read-Only  | Lightweight sensory check returning lux, category, and Matter 0x0400 cluster values.                        |
 
 ---
@@ -115,9 +115,9 @@ Conforming to the **Agent Skills** open specification under [`.agents/skills/`](
 
 ## 🖥️ Interactive Workbench & Custom Elements
 
-The TinyDuino LightMeter provides an interactive workbench rendered via custom Web Components in [`.agents/scripts/tinyduino-element.js`](.agents/scripts/tinyduino-element.js):
+The TinyDuino LightMeter provides an interactive workbench rendered via custom Web Components in [`.agents/scripts/shadow-claw-light-meter-control-panel.js`](.agents/scripts/shadow-claw-light-meter-control-panel.js):
 
-- **Custom Component (`<tinyduino-control-panel>`)**: Embeds dual SVG dials for calibrated illuminance (0..5000+ lx) and raw 10-bit ADC counts (0..1023).
+- **Custom Component (`<shadow-claw-light-meter-control-panel>`)**: Embeds dual SVG dials for calibrated illuminance (0..5000+ lx) and raw 10-bit ADC counts (0..1023).
 - **Live Waveform Visualizer**: Rolling time-series plot tracking ambient light trends and transient changes.
 - **WebMCP Integration**: Seamlessly dispatches commands and streams telemetry across `BroadcastChannel` buses.
 

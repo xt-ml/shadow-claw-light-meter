@@ -77,7 +77,7 @@ test("Workbench scripts: shadow-claw.config.json and built HTML inject tinyduino
   const scripts = config.customElements?.scripts || [];
 
   const elementScript = scripts.find((s) =>
-    s.src?.includes("tinyduino-element.js"),
+    s.src?.includes("shadow-claw-light-meter-control-panel.js"),
   );
   const adapterScript = scripts.find((s) =>
     s.src?.includes("tinyduino-adapter.js"),
@@ -85,17 +85,17 @@ test("Workbench scripts: shadow-claw.config.json and built HTML inject tinyduino
 
   assert.ok(
     elementScript,
-    "tinyduino-element.js must be in customElements.scripts",
+    "shadow-claw-light-meter-control-panel.js must be in customElements.scripts",
   );
   assert.equal(
     elementScript.global,
     true,
-    "tinyduino-element.js must set global: true so DSD & client pages always upgrade <tinyduino-control-panel>",
+    "shadow-claw-light-meter-control-panel.js must set global: true so DSD & client pages always upgrade <shadow-claw-light-meter-control-panel>",
   );
   assert.equal(
     elementScript.autoload,
     true,
-    "tinyduino-element.js must set autoload: true",
+    "shadow-claw-light-meter-control-panel.js must set autoload: true",
   );
 
   assert.ok(
@@ -134,13 +134,13 @@ test("Workbench scripts: shadow-claw.config.json and built HTML inject tinyduino
   );
   assert.ok(
     workbenchHtml.includes(
-      "<tinyduino-control-panel></tinyduino-control-panel>",
+      "<shadow-claw-light-meter-control-panel></shadow-claw-light-meter-control-panel>",
     ),
-    "pages/main/tinyduino.html must contain <tinyduino-control-panel>",
+    "pages/main/tinyduino.html must contain <shadow-claw-light-meter-control-panel>",
   );
   assert.ok(
-    workbenchHtml.includes("tinyduino-element"),
-    "pages/main/tinyduino.html frontmatter must declare tinyduino-element script dependency",
+    workbenchHtml.includes("shadow-claw-light-meter-control-panel"),
+    "pages/main/tinyduino.html frontmatter must declare shadow-claw-light-meter-control-panel script dependency",
   );
 
   const builtWorkbenchPath = resolve(
@@ -150,8 +150,10 @@ test("Workbench scripts: shadow-claw.config.json and built HTML inject tinyduino
   if (existsSync(builtWorkbenchPath)) {
     const builtHtml = readFileSync(builtWorkbenchPath, "utf8");
     assert.ok(
-      builtHtml.includes("/.agents/scripts/tinyduino-element.js"),
-      "built dist/public/main/tinyduino/index.html must inject /.agents/scripts/tinyduino-element.js",
+      builtHtml.includes(
+        "/.agents/scripts/shadow-claw-light-meter-control-panel.js",
+      ),
+      "built dist/public/main/tinyduino/index.html must inject /.agents/scripts/shadow-claw-light-meter-control-panel.js",
     );
     assert.ok(
       builtHtml.includes("/.agents/scripts/tinyduino-adapter.js"),
@@ -191,20 +193,20 @@ test("Theme: pages/main/theme.css and workbench use Material Theme Builder token
 
   // Custom element styling must use CSS custom properties rather than hardcoded navy / amber
   const elementJs = readFileSync(
-    resolve(ROOT, ".agents/scripts/tinyduino-element.js"),
+    resolve(ROOT, ".agents/scripts/shadow-claw-light-meter-control-panel.js"),
     "utf8",
   );
   assert.ok(
     !elementJs.includes("--accent: #f59e0b;"),
-    "tinyduino-element.js must not hardcode old yellow --accent: #f59e0b",
+    "shadow-claw-light-meter-control-panel.js must not hardcode old yellow --accent: #f59e0b",
   );
   assert.ok(
     !elementJs.includes("--bg-card: #131c31;"),
-    "tinyduino-element.js must not hardcode old navy --bg-card: #131c31",
+    "shadow-claw-light-meter-control-panel.js must not hardcode old navy --bg-card: #131c31",
   );
   assert.ok(
     elementJs.includes("var(--shadow-claw-accent-primary"),
-    "tinyduino-element.js must bind to theme accent",
+    "shadow-claw-light-meter-control-panel.js must bind to theme accent",
   );
 });
 
@@ -412,16 +414,16 @@ test("Internal links: documentation pages and workbench must use base-path compa
   );
 
   const elementJs = readFileSync(
-    resolve(ROOT, ".agents/scripts/tinyduino-element.js"),
+    resolve(ROOT, ".agents/scripts/shadow-claw-light-meter-control-panel.js"),
     "utf8",
   );
   assert.ok(
     !elementJs.includes('href="/main/'),
-    "tinyduino-element.js must not contain hardcoded 'href=\"/main/' links; use 'href=\"main/'",
+    "shadow-claw-light-meter-control-panel.js must not contain hardcoded 'href=\"/main/' links; use 'href=\"main/'",
   );
   assert.ok(
     !elementJs.includes('href: "/main/'),
-    "tinyduino-element.js dialog links must not use domain-root 'href: \"/main/'",
+    "shadow-claw-light-meter-control-panel.js dialog links must not use domain-root 'href: \"/main/'",
   );
 });
 

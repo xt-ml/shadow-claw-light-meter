@@ -6,7 +6,7 @@
  *
  * Validates:
  * - All tools start with "tinyduino_"
- * - All custom elements start with "tinyduino-"
+ * - All custom elements start with "shadow-claw-light-meter-"
  * - All broadcast channels start with "tinyduino-"
  * - Pinned workbench page is "/pages/main/tinyduino.html"
  */
@@ -50,10 +50,10 @@ export function checkNamespaceIsolation() {
   // 2. Custom Elements Namespaces
   report.elements = lmConfig.customElements?.allowedElements || [];
   for (const el of report.elements) {
-    if (!el.startsWith("tinyduino-")) {
+    if (!el.startsWith("shadow-claw-light-meter-")) {
       report.namingViolations.push(el);
       issues.push(
-        `Custom element naming violation: "${el}" must start with "tinyduino-".`,
+        `Custom element naming violation: "${el}" must start with "shadow-claw-light-meter-".`,
       );
     }
   }

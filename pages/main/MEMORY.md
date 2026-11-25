@@ -90,7 +90,7 @@ All tools are non-colliding and scoped with the `tinyduino_*` prefix:
 - **`tinyduino_set_led`**: Controls Pin 13 or Pin 7 LEDs (`mode: "ON" | "OFF" | "AUTO" | "NIGHTLIGHT"`).
 - **`tinyduino_get_status`**: Queries connection state, transport type, and packet counters.
 - **`tinyduino_ambient_level`**: Lightweight sensory check returning lux, category, and Matter cluster value.
-- **`tinyduino_render_surface`**: Injects the interactive `<tinyduino-control-panel>` card into chat.
+- **`tinyduino_render_surface`**: Injects the interactive `<shadow-claw-light-meter-control-panel>` card into chat.
 - **`tinyduino_connect` / `tinyduino_disconnect`**: Manages Web Bluetooth transport lifecycle.
 - **`tinyduino_send_command` / `tinyduino_send_raw`**: Direct ASCII protocol transport to UART / BLE Handle 17.
 
@@ -124,7 +124,7 @@ Links to complete documentation chapters:
 - **08. Firmware Guide (shadow-claw-light-meter.ino)**: [`/main/firmware-guide/`](main/firmware-guide/) — 4x oversampling ADC acquisition & BGLib
 - **09. WebMCP Tools**: [`/main/webmcp-tools/`](main/webmcp-tools/) — 13 sensory tools reference & schemas
 - **10. Agent Skills**: [`/main/agent-skills/`](main/agent-skills/) — Autonomous agent skills catalog
-- **11. Workbench UI Architecture**: [`/main/workbench-ui/`](main/workbench-ui/) — Custom element `<tinyduino-control-panel>`, gauge, and waveform
+- **11. Workbench UI Architecture**: [`/main/workbench-ui/`](main/workbench-ui/) — Custom element `<shadow-claw-light-meter-control-panel>`, gauge, and waveform
 - **12. Namespace Isolation**: [`/main/namespace-isolation/`](main/namespace-isolation/) — Strict scoped identifier contract
 - **13. Troubleshooting**: [`/main/troubleshooting/`](main/troubleshooting/) — Hardware, BlueZ, and browser troubleshooting
 - **14. Download Center**: [`/main/download-center/`](main/download-center/) — Sketches, simulation diagram, and JavaScript tools

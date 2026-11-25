@@ -6,60 +6,27 @@
  * Also registers imperative tools with Chrome document.modelContext when available.
  */
 
+import {
+  createToolAdapterBridge,
+  registerNativeWebMcp as registerSharedNativeWebMcp,
+} from "shadow-claw/utils/tool-adapter-bridge";
 import { tinyduino } from "./tinyduino-ble.js";
-import "./tinyduino-element.js";
+import "./shadow-claw-light-meter-control-panel.js";
 
-let cmdChannel = null;
-let resChannel = null;
-let initialized = false;
+const bridge = createToolAdapterBridge({
+  lockName: "shadow-claw-light-meter-adapter",
+  commandsChannel: "tinyduino-commands",
+  resultsChannel: "tinyduino-results",
+  dispatch: handleToolDispatch,
+});
 
 export async function init(container) {
-  if (initialized) return;
-  initialized = true;
-
-  // 1. Worker BroadcastChannel Bridge
-  // Explicit string literals are required for ShadowClaw iframe proxy matching
-  cmdChannel = new BroadcastChannel("tinyduino-commands");
-  resChannel = new BroadcastChannel("tinyduino-results");
-
-  cmdChannel.addEventListener("message", async (event) => {
-    const msg = event.data;
-    if (!msg || !msg.requestId || !msg.type) return;
-
-    // Send immediate ACK
-    resChannel.postMessage({
-      requestId: msg.requestId,
-      ack: true,
-    });
-
-    try {
-      const result = await handleToolDispatch(msg.type, msg.params || {});
-      resChannel.postMessage({
-        requestId: msg.requestId,
-        result,
-      });
-    } catch (err) {
-      resChannel.postMessage({
-        requestId: msg.requestId,
-        error: err.message || String(err),
-      });
-    }
-  });
-
-  // 2. Native Chrome WebMCP Registration
+  await bridge.init();
   await registerNativeWebMcp();
 }
 
 export function cleanup() {
-  if (cmdChannel) {
-    cmdChannel.close();
-    cmdChannel = null;
-  }
-  if (resChannel) {
-    resChannel.close();
-    resChannel = null;
-  }
-  initialized = false;
+  bridge.dispose();
 }
 
 async function handleToolDispatch(name, params) {
@@ -153,7 +120,8 @@ async function handleToolDispatch(name, params) {
       return {
         ok: true,
         rendered: true,
-        element: "<tinyduino-control-panel></tinyduino-control-panel>",
+        element:
+          "<shadow-claw-light-meter-control-panel></shadow-claw-light-meter-control-panel>",
       };
 
     default:
@@ -161,79 +129,64 @@ async function handleToolDispatch(name, params) {
   }
 }
 
+const WEBMCP_TOOLS = [
+  {
+    name: "tinyduino_get_status",
+    title: "Get TinyDuino & LightMeter Status",
+    description:
+      "Return the current TinyDuino connection state, raw ADC, voltage, brightness %, and lux.",
+    inputSchema: { type: "object", properties: {} },
+    annotations: { readOnlyHint: true, consequentialHint: false },
+    execute: async () => tinyduino.getState(),
+  },
+  {
+    name: "tinyduino_read_light",
+    title: "Read Hardware LightMeter (Pin A0)",
+    description:
+      "Trigger an immediate 4x-oversampled analogRead(A0) on the TinyDuino KY-018 photoresistor.",
+    inputSchema: { type: "object", properties: {} },
+    annotations: { readOnlyHint: true, consequentialHint: false },
+    execute: async () => await tinyduino.sendCommand("read_light"),
+  },
+  {
+    name: "tinyduino_set_led",
+    title: "Set TinyDuino LED Mode",
+    description: "Set the LED state: ON, OFF, or AUTO.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        state: { type: "string", enum: ["ON", "OFF", "AUTO"] },
+      },
+      required: ["state"],
+    },
+    annotations: { readOnlyHint: false, consequentialHint: false },
+    execute: async (args) =>
+      await tinyduino.sendCommand("set_led", { state: args.state }),
+  },
+  {
+    name: "tinyduino_send_command",
+    title: "Send ASCII Command to TinyDuino",
+    description:
+      "Send an arbitrary ASCII command string to TinyDuino over GATT Handle 17.",
+    inputSchema: {
+      type: "object",
+      properties: {
+        command: { type: "string" },
+      },
+      required: ["command"],
+    },
+    annotations: { readOnlyHint: false, consequentialHint: false },
+    execute: async (args) =>
+      await tinyduino.sendRawText(String(args.command).trim() + "\n"),
+  },
+];
+
 // Native Chrome WebMCP tool registration (document.modelContext)
 export async function registerNativeWebMcp() {
-  const modelContext =
-    typeof document !== "undefined" && document.modelContext
-      ? document.modelContext
-      : typeof navigator !== "undefined" && navigator.modelContext
-        ? navigator.modelContext
-        : null;
-
-  if (!modelContext || typeof modelContext.registerTool !== "function") {
-    return;
-  }
-
-  const tools = [
-    {
-      name: "tinyduino_get_status",
-      title: "Get TinyDuino & LightMeter Status",
-      description:
-        "Return the current TinyDuino connection state, raw ADC, voltage, brightness %, and lux.",
-      inputSchema: { type: "object", properties: {} },
-      annotations: { readOnlyHint: true, consequentialHint: false },
-      execute: async () => tinyduino.getState(),
-    },
-    {
-      name: "tinyduino_read_light",
-      title: "Read Hardware LightMeter (Pin A0)",
-      description:
-        "Trigger an immediate 4x-oversampled analogRead(A0) on the TinyDuino KY-018 photoresistor.",
-      inputSchema: { type: "object", properties: {} },
-      annotations: { readOnlyHint: true, consequentialHint: false },
-      execute: async () => await tinyduino.sendCommand("read_light"),
-    },
-    {
-      name: "tinyduino_set_led",
-      title: "Set TinyDuino LED Mode",
-      description: "Set the LED state: ON, OFF, or AUTO.",
-      inputSchema: {
-        type: "object",
-        properties: {
-          state: { type: "string", enum: ["ON", "OFF", "AUTO"] },
-        },
-        required: ["state"],
-      },
-      annotations: { readOnlyHint: false, consequentialHint: false },
-      execute: async (args) =>
-        await tinyduino.sendCommand("set_led", { state: args.state }),
-    },
-    {
-      name: "tinyduino_send_command",
-      title: "Send ASCII Command to TinyDuino",
-      description:
-        "Send an arbitrary ASCII command string to TinyDuino over GATT Handle 17.",
-      inputSchema: {
-        type: "object",
-        properties: {
-          command: { type: "string" },
-        },
-        required: ["command"],
-      },
-      annotations: { readOnlyHint: false, consequentialHint: false },
-      execute: async (args) =>
-        await tinyduino.sendRawText(String(args.command).trim() + "\n"),
-    },
-  ];
-
-  for (const tool of tools) {
-    try {
-      const res = modelContext.registerTool(tool);
-      if (res && typeof res.catch === "function") {
-        await res.catch(() => {});
-      }
-    } catch (_) {}
-  }
+  await registerSharedNativeWebMcp(WEBMCP_TOOLS, async (toolName, args) => {
+    const tool = WEBMCP_TOOLS.find((t) => t.name === toolName);
+    return tool ? await tool.execute(args) : undefined;
+  });
 }
 
 // Auto-initialize when loaded in browser window

@@ -26,7 +26,7 @@ The TinyDuino LightMeter exposes 13 declarative tools located in `.agents/tools/
 | `tinyduino_disconnect`            |  Mutating   | Closes GATT connection or terminates simulation.                                                            |
 | `tinyduino_get_connection_status` |  Read-Only  | Returns connection mode (`connected`, `simulated`, `disconnected`) and packet stats.                        |
 | `tinyduino_read_telemetry`        |  Read-Only  | Structured snapshot of raw ADC, signal voltage, lux, and category.                                          |
-| `tinyduino_render_surface`        |  Read-Only  | Embeds the interactive `<tinyduino-control-panel>` component into chat.                                     |
+| `tinyduino_render_surface`        |  Read-Only  | Embeds the interactive `<shadow-claw-light-meter-control-panel>` component into chat.                       |
 | `tinyduino_ambient_level`         |  Read-Only  | Lightweight sensory check returning lux, category, and Matter 0x0400 cluster values.                        |
 
 ---

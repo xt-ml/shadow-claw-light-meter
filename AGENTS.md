@@ -24,14 +24,14 @@ Hardware light meter workbench, Web Bluetooth / BGAPI telemetry engine, declarat
 2. **Namespace Isolation & Architecture Guardrails**:
    - Strictly enforce scoped namespace isolation:
      - Tools prefix: `tinyduino_*`
-     - Custom Elements prefix: `tinyduino-*`
+     - Custom Elements prefix: `shadow-claw-light-meter-*`
      - Broadcast Channels: `tinyduino-commands`, `tinyduino-results`
      - Pinned workbench: `pages/main/tinyduino.html` (portal at `pages/main/index.html`)
    - Verified by `npm run check:compat` (`bin/check-namespace.mjs`).
 
 3. **Pure Logic & Transports Separation**:
    - Core math and packet decoding in `.agents/scripts/tinyduino.js` (zero DOM / BLE dependencies, 100% unit tested).
-   - Transports, queueing, and UI elements in `.agents/scripts/tinyduino-ble.js` and `.agents/scripts/tinyduino-element.js`.
+   - Transports, queueing, and UI elements in `.agents/scripts/tinyduino-ble.js` and `.agents/scripts/shadow-claw-light-meter-control-panel.js`.
    - Worker-to-main messaging via `BroadcastChannel` with explicit string literals.
 
 4. **Declarative Tools & WebMCP**:
