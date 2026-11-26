@@ -49,7 +49,7 @@
       {
         "id": "shadow-claw-light-meter-control-panel",
         "name": "shadow-claw-light-meter-control-panel",
-        "src": ".agents/scripts/shadow-claw-light-meter-control-panel.js",
+        "src": "./.agents/scripts/shadow-claw-light-meter-control-panel.js",
         "global": true,
         "autoload": true,
         "hasInit": false
@@ -57,7 +57,7 @@
       {
         "id": "tinyduino-adapter",
         "name": "tinyduino-adapter",
-        "src": ".agents/scripts/tinyduino-adapter.js",
+        "src": "./.agents/scripts/tinyduino-adapter.js",
         "global": true,
         "autoload": true,
         "hasInit": true
